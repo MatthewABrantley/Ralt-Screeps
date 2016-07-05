@@ -7,17 +7,17 @@ module.exports = function () {
             body.push(WORK);
         }
                 for (let i = 0; i < numberOfParts; i++) {
-            body.push(WORK);
-        }
+                    body.push(WORK);
+                }
                 for (let i = 0; i < numberOfParts; i++) {
-            body.push(CARRY);
-        }
+                    body.push(CARRY);
+                }
                 for (let i = 0; i < numberOfParts; i++) {
-            body.push(MOVE);
-        }
+                    body.push(MOVE);
+                }
                 for (let i = 0; i < numberOfParts; i++) {
-            body.push(MOVE);
-        }
+                    body.push(MOVE);
+                }
         return this.createCreep(body, undefined, {role: roleName, working: false });
     };
 
