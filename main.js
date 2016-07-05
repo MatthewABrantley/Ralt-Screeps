@@ -36,7 +36,7 @@ module.exports.loop = function () {
         }
     }
 
-    var minimumNumberOfHarvesters = 6;
+    var minimumNumberOfHarvesters = 4;
     var minimumNumberOfUpgraders = 1;
     var minimumNumberOfBuilders = 1;
     var minimumNumberOfRepairers = 2;
@@ -52,10 +52,9 @@ module.exports.loop = function () {
     if (numberOfHarvesters < minimumNumberOfHarvesters) {
         name = Game.spawns.Spawn1.createCustomCreep(energy, 'harvester');
         
-
-        if (name == ERR_NOT_ENOUGH_ENERGY && numberOfHarvesters == 0) {
-            name = Game,spawns.Spawn1.createCustomCreep(
-                Game.spawns.Spawn1.room.energyAvailable, 'harvester');
+            if (name == ERR_NOT_ENOUGH_ENERGY && numberOfHarvesters == 0) {
+                name = Game,spawns.Spawn1.createCustomCreep(
+                    Game.spawns.Spawn1.room.energyAvailable, 'harvester');
         }
     }
     else if (numberOfUpgraders < minimumNumberOfUpgraders) {
@@ -71,6 +70,6 @@ module.exports.loop = function () {
         name = Game.spawns.Spawn1.createCustomCreep(energy, 'builder');
     }
     if (!(name < 0)) {
-        console.log("Spawned new creep: " + name);
+        console.log("Spawned new creep: " + name );
     }
 };
