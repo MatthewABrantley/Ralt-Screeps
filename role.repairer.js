@@ -20,9 +20,9 @@ module.exports = {
                     creep.moveTo(structure);
                 }
             }
-            else {
-                roleBuilder.run(creep);
-            }
+           // else {
+           //     roleBuilder.run(creep);
+           // }
         }
         // if creep needs to harvest energy from source
         else {
