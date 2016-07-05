@@ -36,7 +36,7 @@ module.exports.loop = function () {
         }
     }
 
-    var minimumNumberOfHarvesters = 3;
+    var minimumNumberOfHarvesters = 6;
     var minimumNumberOfUpgraders = 1;
     var minimumNumberOfBuilders = 1;
     var minimumNumberOfRepairers = 2;
