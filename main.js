@@ -57,7 +57,7 @@ module.exports.loop = function () {
     var minimumNumberOfUpgraders = 1;
     var minimumNumberOfBuilders = 1;
     var minimumNumberOfRepairers = 2;
-    var minimumNumberofWallRepairers = 1;
+    var minimumNumberOfWallRepairers = 1;
     
     var maximumNumberOfBuilders = 10;
     
@@ -84,7 +84,7 @@ module.exports.loop = function () {
     else if (numberOfRepairers < minimumNumberOfRepairers) {
         name = Game.spawns.Spawn1.createCustomCreep(energy, 'repairer');
     }
-    else if (numberOfWallRepairers < minimumNumberofWallRepairers) {
+    else if (numberOfWallRepairers < minimumNumberOfWallRepairers) {
         name = Game.spawns.Spawn1.createCustomCreep(energy, 'wallrepairer');
     }
     else if (numberOfBuilders < minimumNumberOfBuilders) {
