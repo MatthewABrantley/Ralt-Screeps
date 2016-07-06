@@ -6,6 +6,22 @@ var roleBuilder = require('role.builder');
 var roleRepairer = require('role.repairer');
 
 module.exports.loop = function () {
+
+    var tower = Game.getObjectById('TOWER_ID');
+    if(tower) {
+        var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
+            filter: (structure) => structure.hits < structure.hitsMax
+        });
+        if(closestDamagedStructure) {
+            tower.repair(closestDamagedStructure);
+        }
+
+        var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+        if(closestHostile) {
+            tower.attack(closestHostile);
+        }
+    }
+    
     // clear memory
     for (let name in Memory.creeps) {
         if (Game.creeps[name] == undefined) {
