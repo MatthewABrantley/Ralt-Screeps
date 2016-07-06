@@ -57,6 +57,8 @@ module.exports.loop = function () {
     var minimumNumberOfBuilders = 1;
     var minimumNumberOfRepairers = 2;
     
+    var maximumNumberOfBuilders = 15;
+    
     var numberOfHarvesters = _.sum(Game.creeps, (c) => c.memory.role == 'harvester');
     var numberOfUpgraders = _.sum(Game.creeps, (c) => c.memory.role == 'upgrader');
     var numberOfBuilders = _.sum(Game.creeps, (c) => c.memory.role == 'builder');
@@ -82,7 +84,7 @@ module.exports.loop = function () {
     else if (numberOfBuilders < minimumNumberOfBuilders) {
         name = Game.spawns.Spawn1.createCustomCreep(energy, 'builder');
     }
-    else {
+    else if (numberOfBuilders < maximumNumberOfBuilders){
         name = Game.spawns.Spawn1.createCustomCreep(energy, 'builder');
     }
     if (!(name < 0)) {
