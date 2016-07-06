@@ -4,6 +4,7 @@ var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var roleRepairer = require('role.repairer');
+var roleWallRepairer = require('role.wallrepairer');
 
 module.exports.loop = function () {
         var tower = Game.getObjectById('TOWER_ID');
@@ -46,12 +47,17 @@ module.exports.loop = function () {
         else if (creep.memory.role == 'repairer') {
             roleRepairer.run(creep);
         }
+                // if creep is wallrepairer, call repairer script
+        else if (creep.memory.role == 'wallrepairer') {
+            roleWallRepairer.run(creep);
+        }
     }
 
     var minimumNumberOfHarvesters = 5;
     var minimumNumberOfUpgraders = 1;
     var minimumNumberOfBuilders = 1;
     var minimumNumberOfRepairers = 2;
+    var minimumNumberofWallRepairers = 1;
     
     var maximumNumberOfBuilders = 10;
     
@@ -59,6 +65,7 @@ module.exports.loop = function () {
     var numberOfUpgraders = _.sum(Game.creeps, (c) => c.memory.role == 'upgrader');
     var numberOfBuilders = _.sum(Game.creeps, (c) => c.memory.role == 'builder');
     var numberOfRepairers = _.sum(Game.creeps, (c) => c.memory.role == 'repairer');
+    var numberOfWallRepairers = _.sum(Game.creeps, (c) => c.memory.role == 'wallrepairer');
     
     var energy = Game.spawns.Spawn1.room.energyCapacityAvailable;
     var name = undefined;
@@ -76,6 +83,9 @@ module.exports.loop = function () {
     }
     else if (numberOfRepairers < minimumNumberOfRepairers) {
         name = Game.spawns.Spawn1.createCustomCreep(energy, 'repairer');
+    }
+    else if (numberOfWallRepairers < minimumNumberofWallRepairers) {
+        name = Game.spawns.Spawn1.createCustomCreep(energy, 'wallrepairer');
     }
     else if (numberOfBuilders < minimumNumberOfBuilders) {
         name = Game.spawns.Spawn1.createCustomCreep(energy, 'builder');
