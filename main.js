@@ -6,7 +6,6 @@ var roleBuilder = require('role.builder');
 var roleRepairer = require('role.repairer');
 
 module.exports.loop = function () {
-
         var tower = Game.getObjectById('TOWER_ID');
         if(tower) {
         var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
@@ -15,20 +14,17 @@ module.exports.loop = function () {
         if(closestDamagedStructure) {
             tower.repair(closestDamagedStructure);
         }
-
         var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
         if(closestHostile) {
             tower.attack(closestHostile);
         }
     }
-    
     // clear memory
     for (let name in Memory.creeps) {
         if (Game.creeps[name] == undefined) {
             delete Memory.creeps[name];
         }
     }
-    
     //for every creep name in game.creeps
     for (let name in Game.creeps) {
         // get the creep object
@@ -57,7 +53,7 @@ module.exports.loop = function () {
     var minimumNumberOfBuilders = 1;
     var minimumNumberOfRepairers = 2;
     
-    var maximumNumberOfBuilders = 15;
+    var maximumNumberOfBuilders = 6;
     
     var numberOfHarvesters = _.sum(Game.creeps, (c) => c.memory.role == 'harvester');
     var numberOfUpgraders = _.sum(Game.creeps, (c) => c.memory.role == 'upgrader');
