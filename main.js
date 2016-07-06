@@ -72,7 +72,6 @@ module.exports.loop = function () {
     
     if (numberOfHarvesters < minimumNumberOfHarvesters) {
         name = Game.spawns.Spawn1.createCustomCreep(energy, 'harvester');
-        
             if (name == ERR_NOT_ENOUGH_ENERGY && numberOfHarvesters == 0) {
                 name = Game.spawns.Spawn1.createCustomCreep(
                     Game.spawns.Spawn1.room.energyAvailable, 'harvester');
