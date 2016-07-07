@@ -7,10 +7,10 @@ var roleRepairer = require('role.repairer');
 var roleWallRepairer = require('role.wallrepairer');
 
 module.exports.loop = function () {
-        var tower = Game.getObjectById('TOWER_ID');
+        var tower = Game.getObjectById('577c54de60a6481721b4c1ba');
         if(tower) {
         var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
-            filter: (s) => s.hits < s.hitsMax
+            filter: (structure) => structure.hits < structure.hitsMax
         });
         if(closestDamagedStructure) {
             tower.repair(closestDamagedStructure);
