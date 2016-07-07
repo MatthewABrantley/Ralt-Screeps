@@ -12,7 +12,7 @@ module.exports = {
 
         if (creep.memory.working == true) {
             var structure = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-                filter: (s) => s.hits < 200000 && s.structureType == STRUCTURE_WALL
+                filter: (s) => s.hits < 100000 && s.structureType == STRUCTURE_WALL
             });  
             if (structure != undefined) {
                 if (creep.repair(structure) == ERR_NOT_IN_RANGE) {
