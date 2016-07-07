@@ -10,7 +10,7 @@ module.exports.loop = function () {
         var tower = Game.getObjectById('577c54de60a6481721b4c1ba');
         if(tower) {
         var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
-            filter: (structure) => structure.hits < 500000 && (structure).structureType == STRUCTURE_RAMPART
+            filter: (structure) => structure.hits < 100000 && (structure).structureType == STRUCTURE_RAMPART
         });
         if(closestDamagedStructure) {
             tower.repair(closestDamagedStructure);
