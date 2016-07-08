@@ -53,13 +53,13 @@ module.exports.loop = function () {
         }
     }
 
-    var minimumNumberOfHarvesters = 5;
+    var minimumNumberOfHarvesters = ;
     var minimumNumberOfUpgraders = 1;
     var minimumNumberOfBuilders = 1;
     var minimumNumberOfRepairers = 2;
     var minimumNumberOfWallRepairers = 1;
     
-    var maximumNumberOfBuilders = 10;
+    var maximumNumberOfBuilders = 5;
     
     var numberOfHarvesters = _.sum(Game.creeps, (c) => c.memory.role == 'harvester');
     var numberOfUpgraders = _.sum(Game.creeps, (c) => c.memory.role == 'upgrader');
