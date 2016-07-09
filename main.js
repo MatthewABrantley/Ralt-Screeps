@@ -1,4 +1,4 @@
-//Import Mo//Import Modules
+//Import Modules
 require('prototype.spawn')();
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
@@ -93,6 +93,6 @@ module.exports.loop = function () {
         name = Game.spawns.Spawn1.createCustomCreep(energy, 'builder');
     }
     if (!(name = undefined)) {
-        console.log("Spawned new creep: " + name );
+        console.log("Spawned new creep: " + creep.memory.role);
     }
 };
