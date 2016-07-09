@@ -35,6 +35,9 @@ module.exports = function () {
                 body.push(CARRY);
             }
             for (let i = 0; i < numberOfParts; i++) {
+                body.push(CARRY);
+            }
+            for (let i = 0; i < numberOfParts; i++) {
                 body.push(MOVE);
             }
             for (let i = 0; i < numberOfParts; i++) {
