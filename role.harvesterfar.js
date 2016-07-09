@@ -22,10 +22,15 @@ module.exports = {
             }   
         }
         else {
-            var source = creep.pos.findClosestByPath(FIND_SOURCES);
+            var source = Game.getObjectById('576a9bd757110ab231d880c8');
             if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(source);
             }    
         }
     }
 };
+
+
+
+var source = 
+creep.memory.sourceId = source.id;
