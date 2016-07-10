@@ -93,6 +93,6 @@ module.exports.loop = function () {
         name = Game.spawns.Spawn1.createCustomCreep(energy, 'builder');
     }
     if (!(name < 0)) {
-        console.log("Spawned new creep: " + name "If this is undefined, the system doesn't know what to spawn");
+        console.log("If this is undefined, the system doesn't know what to spawn | Spawned new creep: " + name );
     }
 };
