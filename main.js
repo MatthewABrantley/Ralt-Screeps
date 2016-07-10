@@ -55,7 +55,7 @@ module.exports.loop = function () {
 
     var minimumNumberOfHarvesters = 4;
     var minimumNumberOfUpgraders = 1;
-    var minimumNumberOfBuilders = 1;
+    var minimumNumberOfBuilders = 2;
     var minimumNumberOfRepairers = 2;
     var minimumNumberOfWallRepairers = 1;
     
@@ -93,6 +93,6 @@ module.exports.loop = function () {
         name = Game.spawns.Spawn1.createCustomCreep(energy, 'builder');
     }
     if (!(name < 0)) {
-        console.log("Spawned new creep: " + name );
+        console.log("Spawned new creep: " + name "If this is undefined, the system doesn't know what to spawn");
     }
 };

@@ -31,7 +31,9 @@ module.exports = function () {
             for (let i = 0; i < numberOfParts; i++) {
                 body.push(CARRY);
             }
-            
+            for (let i = 0; i < numberOfParts; i++) {
+                body.push(CARRY);
+            }
             for (let i = 0; i < numberOfParts; i++) {
                 body.push(MOVE);
             }
@@ -45,3 +47,5 @@ module.exports = function () {
     };
 
 };
+
+// What I'm I'm supposed to have numberOfParts = the # of cycles to run through pushing the body array? if I change this to 3 parts, and make numberOfParts = 3, it will gen 9 body parts? 
