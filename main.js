@@ -20,7 +20,6 @@ module.exports.loop = function () {
             tower.attack(closestHostile);
         }
     }
-module.exports.loop = function () {
         var tower2 = Game.getObjectById('577c54de60a6481721b4c1ba');
         if(tower2) {
         var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
