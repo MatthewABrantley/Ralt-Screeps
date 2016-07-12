@@ -20,6 +20,20 @@ module.exports.loop = function () {
             tower.attack(closestHostile);
         }
     }
+module.exports.loop = function () {
+        var tower2 = Game.getObjectById('577c54de60a6481721b4c1ba');
+        if(tower2) {
+        var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
+            filter: (structure) => structure.hits < 100000 && (structure).structureType == STRUCTURE_RAMPART
+        });
+        if(closestDamagedStructure) {
+            tower.repair(closestDamagedStructure);
+        }
+        var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+        if(closestHostile) {
+            tower.attack(closestHostile);
+        }
+    }
     // clear memory
     for (let name in Memory.creeps) {
         if (Game.creeps[name] == undefined) {
