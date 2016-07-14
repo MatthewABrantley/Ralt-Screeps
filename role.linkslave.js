@@ -19,6 +19,7 @@ module.exports = {
             }   
         }
         else {
+            var targetLink = Game.getObjectById('57871f20ece285d20d1f0d2b');
             if (creep.withdraw(targetLink) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(targetLink);
             }    
