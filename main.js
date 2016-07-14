@@ -92,6 +92,8 @@ module.exports.loop = function () {
         }
     }
     
+    var numberOfCreeps = _.sum(Game.creeps, (c) =>
+    c.memory.role != 'undefined');
 
     var minimumNumberOfHarvesters = 4;
     var minimumNumberOfHarvesterFars = 1;
