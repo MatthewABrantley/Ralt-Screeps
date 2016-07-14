@@ -15,7 +15,7 @@ module.exports = {
                             || s.structureType == STRUCTURE_SPAWN
                             || s.structureType == STRUCTURE_EXTENSION
                             && s.energy < s.energyCapacity 
-            )
+            });
             if (structure != undefined) {
                 if (creep.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(structure);
