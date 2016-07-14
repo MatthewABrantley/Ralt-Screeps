@@ -39,13 +39,15 @@ module.exports.loop = function () {
         
     // Link Code Begin
         // var sourceLinkEnergy = Game.OwnedStructure.STRUCTURE_LINK.
-        //var sourceLink = Game.getObjectById('57871830fb5c76907e32e5c3');
-        //    if(sourceLink) {
-        //        var targetLink = Game.getObjectById('57871f20ece285d20d1f0d2b');
-        //    if(targetLink) {
-        //        transferEnergy(targetLink, [800]);
-        //    }
-        //}
+        var sourceLink = Game.getObjectById('57871830fb5c76907e32e5c3');
+            if(sourceLink.energy == 800) {
+                var targetLink = Game.getObjectById('57871f20ece285d20d1f0d2b');
+            if(targetLink) {
+                transferEnergy(targetLink, [800]);
+            if (!(targetLink < 0)) {
+                console.log("Link Building to 800");
+            }
+        }
     // Link Code End
             
     // clear memory
