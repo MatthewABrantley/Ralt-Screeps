@@ -10,8 +10,8 @@ module.exports = {
         if (creep.memory.working == true) {
             var linkStorage = Game.getObjectById('57808dd70affe1b058f22b5c');
             if (linkStorage != undefined) {
-                if (creep.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(structure);
+                if (creep.transfer(linkStorage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(linkStorage);
                 }
             }   
         }
