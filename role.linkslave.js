@@ -1,3 +1,5 @@
+//TO DO: Implement Tower Bros role and have linkslaves load up towers if they need any from linkStorage
+// This will allow us to stockpile in peace time, and drain RESOURCE_ENERGY into defense when not
 module.exports = {
     run: function(creep) {
             if (creep.memory.working == true && creep.carry.energy == 0) {
@@ -18,7 +20,7 @@ module.exports = {
         else {
             var pickupLink = Game.getObjectById('57871f20ece285d20d1f0d2b');
             if (creep.withdraw(pickupLink, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(targetLink);
+                creep.moveTo(pickupLink);
             }    
         }
     }
