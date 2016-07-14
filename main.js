@@ -43,7 +43,7 @@ module.exports.loop = function () {
         var targetLink = Game.getObjectById('57871f20ece285d20d1f0d2b');
         
             if(sourceLink) {
-                transferEnergy(targetLink, [800]);
+                sourceLink.transferEnergy(targetLink, [800]);
             if (targetLink == undefined) {
                 console.log("Link Building to 800");
             }
