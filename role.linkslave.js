@@ -8,11 +8,8 @@ module.exports = {
         }
 
         if (creep.memory.working == true) {
-            var structure = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-              filter: (s) => (s.structureType == STRUCTURE_STORAGE)
-                            && s.energy < s.energyCapacity 
-            });
-            if (structure != undefined) {
+            var linkStorage = Game.getObjectById('57808dd70affe1b058f22b5c');
+            if (linkStorage != undefined) {
                 if (creep.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(structure);
                 }
