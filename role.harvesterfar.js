@@ -9,10 +9,11 @@ module.exports = {
 
         if (creep.memory.working == true) {
             var structure = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-              filter: (s) => (s.structureType == STRUCTURE_SPAWN
-                            || s.structureType == STRUCTURE_EXTENSION
+              filter: (s) => (s.structureType == STRUCTURE_LINK
+                            || s.structureType == STRUCTURE_CONTAINER
                             || s.structureType == STRUCTURE_TOWER
-                            || s.structureType == STRUCTURE_CONTAINER)
+                            || s.structureType == STRUCTURE_SPAWN
+                            || s.structureType == STRUCTURE_EXTENSION
                             && s.energy < s.energyCapacity 
             });
             if (structure != undefined) {
@@ -32,5 +33,5 @@ module.exports = {
 
 
 
-var source = 
-creep.memory.sourceId = source.id;
+// var source = 
+// creep.memory.sourceId = source.id;
