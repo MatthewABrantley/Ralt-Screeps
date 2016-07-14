@@ -6,6 +6,7 @@ var roleBuilder = require('role.builder');
 var roleRepairer = require('role.repairer');
 var roleWallRepairer = require('role.wallrepairer');
 var roleHarvesterFar = require('role.harvesterfar');
+var roleLinkSlave = require('role.linkslave');
 
 module.exports.loop = function () {
     // Tower Code Begin
@@ -61,6 +62,10 @@ module.exports.loop = function () {
         // get the creep object
         var creep = Game.creeps[name];
         
+        //if creep is linkslave, call linkslave script
+        if (creep.memory.role == 'linkslave') {
+            roleLinkSlave.run(creep);
+        }
         //if creep is harvester, call harvester script
         if (creep.memory.role == 'harvester') {
             roleHarvester.run(creep);
@@ -87,8 +92,10 @@ module.exports.loop = function () {
         }
     }
     
-    var minimumNumberOfHarvesterFars = 1;
+
     var minimumNumberOfHarvesters = 4;
+    var minimumNumberOfHarvesterFars = 1;
+    var minimumNumberOfLinkSlaves = 1;
     var minimumNumberOfUpgraders = 1;
     var minimumNumberOfBuilders = 2;
     var minimumNumberOfRepairers = 2;
@@ -102,6 +109,7 @@ module.exports.loop = function () {
     var numberOfRepairers = _.sum(Game.creeps, (c) => c.memory.role == 'repairer');
     var numberOfWallRepairers = _.sum(Game.creeps, (c) => c.memory.role == 'wallrepairer');
     var numberOfHarvesterFars = _.sum(Game.creeps, (c) => c.memory.role == 'harvesterfar');
+    var numberOfLinkSlaves = _.sum(Game.creeps, (c) => c.memory.role == 'linkslave');
     
     var energy = Game.spawns.Spawn1.room.energyCapacityAvailable;
     var name = undefined;
@@ -118,6 +126,9 @@ module.exports.loop = function () {
         }
     else if (numberOfUpgraders < minimumNumberOfUpgraders) {
         name = Game.spawns.Spawn1.createCustomCreep(energy, 'upgrader');
+    }
+    else if (numberOfLinkSlaves < minimumNumberOfLinkSlaves) {
+        name = Game.spawns.Spawn1.createCustomCreep(energy, 'linkslave');
     }
     else if (numberOfRepairers < minimumNumberOfRepairers) {
         name = Game.spawns.Spawn1.createCustomCreep(energy, 'repairer');
