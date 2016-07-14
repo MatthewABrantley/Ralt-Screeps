@@ -99,7 +99,7 @@ module.exports.loop = function () {
     var minimumNumberOfHarvesterFars = 1;
     var minimumNumberOfLinkSlaves = 1;
     var minimumNumberOfUpgraders = 1;
-    var minimumNumberOfBuilders = 2;
+    var minimumNumberOfBuilders = 1;
     var minimumNumberOfRepairers = 2;
     var minimumNumberOfWallRepairers = 1;
     
