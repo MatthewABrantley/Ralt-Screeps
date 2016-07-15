@@ -25,10 +25,10 @@ module.exports.loop = function () {
                 tower.attack(closestHostile);
                 }
         }
-        var tower2 = Game.getObjectById('577c54de60a6481721b4c1ba');
+        var tower2 = Game.getObjectById('578422af775afdc61face40f');
             if(tower2) {
                 var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
-                    filter: (structure) => structure.hits < 100000 && (structure).structureType == STRUCTURE_RAMPART
+                    filter: (structure) => structure.hits < 10000 && (structure).structureType == STRUCTURE_RAMPART
         });
         if(closestDamagedStructure) {
             tower.repair(closestDamagedStructure);
