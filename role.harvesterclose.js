@@ -10,7 +10,6 @@ module.exports = {
         if (creep.memory.working == true) {
             var structure = creep.pos.findClosestByPath(FIND_STRUCTURES, {
               filter: (s) => (s.structureType == STRUCTURE_STORAGE
-                            || s.structureType == STRUCTURE_CONTAINER
                             || s.structureType == STRUCTURE_EXTENSION)
                             && s.energy < s.energyCapacity 
             });
