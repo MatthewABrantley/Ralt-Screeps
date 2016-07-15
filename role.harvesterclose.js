@@ -8,11 +8,12 @@ module.exports = {
         }
 
         if (creep.memory.working == true) {
-            var depositStorage = Game.getObjectById('57808dd70affe1b058f22b5c')
+            var depositStorage = Game.getObjectById('57808dd70affe1b058f22b5c');
             if (depositStorage != undefined) {
                 if (creep.transfer(depositStorage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(depositStorage);
-            }   
+                }   
+            }
         }
         else {
             var source = Game.getObjectById('576a9bd757110ab231d880ca');
@@ -22,8 +23,3 @@ module.exports = {
         }
     }
 };
-
-
-
-// var source = 
-// creep.memory.sourceId = source.id;
