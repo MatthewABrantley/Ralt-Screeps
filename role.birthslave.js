@@ -1,6 +1,5 @@
 //Module to Export
 module.exports = {
-    // Running the (creep) function, look to adapt this to towers and get them out of main.js
     run: function(creep) {
             if (creep.memory.working == true && creep.carry.energy == 0) {
             creep.memory.working = false;
@@ -10,12 +9,19 @@ module.exports = {
         }
 
         if (creep.memory.working == true) {
-            if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-            //if (creep.transfer(Game.spawns.Spawn1, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(creep.room.controller);
+            var structure = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+              filter: (s) => (s.structureType == STRUCTURE_SPAWN
+                            || s.structureType == STRUCTURE_EXTENSION
+                            || s.structureType == STRUCTURE_TOWER
+                            || s.structureType == STRUCTURE_CONTAINER)
+                            && s.energy < s.energyCapacity 
+            });
+            if (structure != undefined) {
+                if (creep.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(structure);
+                }
             }   
         }
-        // ELSE Working == False, fill up from pickupStorage
         else {
             var pickupStorage = Game.getObjectById('57808dd70affe1b058f22b5c');
             if (creep.withdraw(pickupStorage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {

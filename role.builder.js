@@ -1,6 +1,7 @@
 //Import Modules
 var roleUpgrader = require('role.upgrader');
 
+//Module to Export
 module.exports = {
     run: function(creep) {
             if (creep.memory.working == true && creep.carry.energy == 0) {
@@ -21,10 +22,11 @@ module.exports = {
                 roleUpgrader.run(creep);
             }
         }
-            else {
-            var source = creep.pos.findClosestByPath(FIND_SOURCES);
-            if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(source);
+        // ELSE Working == False, fill up from pickupStorage
+        else {
+            var pickupStorage = Game.getObjectById('57808dd70affe1b058f22b5c');
+            if (creep.withdraw(pickupStorage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(pickupStorage);
             }    
         }
     }

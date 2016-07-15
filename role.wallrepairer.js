@@ -1,6 +1,7 @@
 //Import Modules
 var roleBuilder = require('role.builder');
 
+// Module to Export
 module.exports = {
     run: function(creep) {
             if (creep.memory.working == true && creep.carry.energy == 0) {
@@ -12,7 +13,7 @@ module.exports = {
 
         if (creep.memory.working == true) {
             var structure = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-                filter: (s) => s.hits < 300000 && s.structureType == STRUCTURE_WALL
+                filter: (s) => s.hits < 310000 && s.structureType == STRUCTURE_WALL
             });  
             if (structure != undefined) {
                 if (creep.repair(structure) == ERR_NOT_IN_RANGE) {
@@ -23,11 +24,11 @@ module.exports = {
                 roleBuilder.run(creep);
             }
         }
-        // if creep needs to harvest energy from source
+        // ELSE Working == False, fill up from pickupStorage
         else {
-            var source = creep.pos.findClosestByPath(FIND_SOURCES);
-            if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(source);
+            var pickupStorage = Game.getObjectById('57808dd70affe1b058f22b5c');
+            if (creep.withdraw(pickupStorage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(pickupStorage);
             }    
         }
     }

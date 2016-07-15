@@ -1,4 +1,3 @@
-//Module to Export
 module.exports = {
     run: function(creep) {
             if (creep.memory.working == true && creep.carry.energy == 0) {
@@ -10,10 +9,8 @@ module.exports = {
 
         if (creep.memory.working == true) {
             var structure = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-              filter: (s) => (s.structureType == STRUCTURE_LINK
+              filter: (s) => (s.structureType == STRUCTURE_STORAGE
                             || s.structureType == STRUCTURE_CONTAINER
-                            || s.structureType == STRUCTURE_TOWER
-                            || s.structureType == STRUCTURE_SPAWN
                             || s.structureType == STRUCTURE_EXTENSION)
                             && s.energy < s.energyCapacity 
             });
@@ -24,7 +21,7 @@ module.exports = {
             }   
         }
         else {
-            var source = Game.getObjectById('576a9bd757110ab231d880c8');
+            var source = Game.getObjectById('576a9bd757110ab231d880ca');
             if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(source);
             }    

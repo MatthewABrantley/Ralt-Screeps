@@ -1,3 +1,4 @@
+//Module to Export
 module.exports = function () {
     StructureSpawn.prototype.createCustomCreep = 
     function(energy, roleName) {
