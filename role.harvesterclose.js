@@ -8,15 +8,10 @@ module.exports = {
         }
 
         if (creep.memory.working == true) {
-            var structure = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-              filter: (s) => (s.structureType == STRUCTURE_STORAGE
-                            || s.structureType == STRUCTURE_EXTENSION)
-                            && s.energy < s.energyCapacity 
-            });
-            if (structure != undefined) {
-                if (creep.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(structure);
-                }
+            var depositStorage = Game.getObjectById('57808dd70affe1b058f22b5c')
+            if (depositStorage != undefined) {
+                if (creep.transfer(depositStorage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(depositStorage);
             }   
         }
         else {
