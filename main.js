@@ -12,7 +12,11 @@ var roleHarvesterClose = require('role.harvesterclose');
 var roleBirthSlave = require('role.birthslave');
 var roleKnight = require('role.knight');
 
+
 module.exports.loop = function () {
+    if (roleKnight == undefined) {
+        console.log("Knight Error, role failed to be defined");
+    }
     // Tower Code Begin
         var tower = Game.getObjectById('577c54de60a6481721b4c1ba');
             if(tower) {
@@ -68,7 +72,7 @@ module.exports.loop = function () {
         
         //if creep is knight, call knight script
         if (creep.memory.role == 'knight') {
-            roleKnight.run(creep);
+            console.log("Knight Role Running") && roleKnight.run(creep);
             }
         //if creep is linkslave, call linkslave script
         if (creep.memory.role == 'linkslave') {
