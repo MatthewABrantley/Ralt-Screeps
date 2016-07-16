@@ -1,6 +1,7 @@
 //Import Modules
 require('prototype.spawn')();
 require('prototype.kspawn')();
+require('prototype.nwspawn')();
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
@@ -162,7 +163,7 @@ module.exports.loop = function () {
     
     //Spawn a BirthSlave if none exist
     else if (numberOfBirthSlaves < minimumNumberOfBirthSlaves) {
-        name = Game.spawns.Spawn1.createCustomCreep(energy, 'birthslave');
+        name = Game.spawns.Spawn1.createNWCustomCreep(energy, 'birthslave');
         }
         else 
             if (numberOfHarvesterFars < minimumNumberOfHarvesterFars) {
@@ -174,7 +175,7 @@ module.exports.loop = function () {
                 }
                 else 
                     if (numberOfLinkSlaves < minimumNumberOfLinkSlaves) {
-                    name = Game.spawns.Spawn1.createCustomCreep(energy, 'linkslave');
+                    name = Game.spawns.Spawn1.createNWCustomCreep(energy, 'linkslave');
                     }
                     else 
                         if (numberOfRepairers < minimumNumberOfRepairers) {
