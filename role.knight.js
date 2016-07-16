@@ -39,13 +39,13 @@ module.exports = {
         }
     }
 };
-
-if(creep.room != anotherRoomName) {
-    var exitDir = Game.map.findExit(creep.room, anotherRoomName);
-    var exit = creep.pos.findClosestByRange(exitDir);
-    creep.moveTo(exit);
-}
-else {
-    // go to some place in another room
-}
+//
+//if(creep.room != anotherRoomName) {
+//    var exitDir = Game.map.findExit(creep.room, anotherRoomName);
+//    var exit = creep.pos.findClosestByRange(exitDir);
+//    creep.moveTo(exit);
+//}
+//else {
+//    // go to some place in another room
+//}
 //creep.moveTo(new RoomPosition(25, 20, 'W10N5'));
