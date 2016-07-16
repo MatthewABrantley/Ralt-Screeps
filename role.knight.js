@@ -8,7 +8,7 @@ module.exports = {
             creep.moveTo(exit);
             }
             else
-                if (creep.memory.working == leave && creep.room = W32S37) {
+                if (creep.memory.working == leave && creep.room == W32S37) {
                     creep.memory.working == false;
                     }
                     else 
