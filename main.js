@@ -2,6 +2,7 @@
 require('prototype.spawn')();
 require('prototype.kspawn')();
 require('prototype.nwspawn')();
+require('prototype.claimspawn')();
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
@@ -12,6 +13,7 @@ var roleLinkSlave = require('role.linkslave');
 var roleHarvesterClose = require('role.harvesterclose');
 var roleBirthSlave = require('role.birthslave');
 var roleKnight = require('role.knight');
+var roleClaimer = require('role.claimer');
 
 
 module.exports.loop = function () {
@@ -72,6 +74,10 @@ module.exports.loop = function () {
         var creep = Game.creeps[name];
         
         //if creep is knight, call knight script
+        if (creep.memory.role == 'claimer') {
+            roleClaimer.run(creep);
+            }
+        //if creep is Claimer, call knight script
         if (creep.memory.role == 'knight') {
             roleKnight.run(creep);
             }
@@ -127,7 +133,8 @@ module.exports.loop = function () {
     var minimumNumberOfBuilders = 1;
     var minimumNumberOfRepairers = 2;
     var minimumNumberOfWallRepairers = 1;
-    var minimumNUmberOfKnights = 1;
+    var minimumNumberOfKnights = 1;
+    var minimumNumberOfClaimers = 1;
     
     //Max numbers Deprecated and Bad
     //var maximumNumberOfBuilders = 5;
@@ -143,7 +150,8 @@ module.exports.loop = function () {
     var numberOfLinkSlaves = _.sum(Game.creeps, (c) => c.memory.role == 'linkslave');
     var numberOfBirthSlaves = _.sum(Game.creeps, (c) => c.memory.role == 'birthslave');
     var numberOfKnights = _.sum(Game.creeps, (c) => c.memory.role == 'knight');
-    
+    var numberOfClaimers = _.sum(Game.creeps, (c) => c.memory.role == 'claimer');
+        
     //var energy wizardy that barely works
     var energy = Game.spawns.Spawn1.room.energyCapacityAvailable;
     
@@ -193,8 +201,22 @@ module.exports.loop = function () {
                                     if (numberOfKnights >= 1) {
                                     console.log("If this is undefined, the system is holding a Knight | Spawned new creep: " + name);
                                     }
-                                    else name = Game.spawns.Spawn1.createCustomKCreep(energy, 'knight');
-
+                                    else 
+                                        if (numberOfKnights == 0 {
+                                        name = Game.spawns.Spawn1.createCustomKCreep(energy, 'knight');
+                                        }
+                                        else
+                                            if (numberOfClaimers >= 1) {
+                                            console.log(("If this is undefined, the system is holding a Knight | Spawned new creep: " + name);
+                                            }
+                                            else
+                                                if (numberOfClaimers == 0) {
+                                                name = Game.spawns.Spawn1.createClaimCustomCreep(energy, 'claimer');
+                                                }
+                                                else 
+                                                    if (numberOfClaimers >= 1 {
+                                                    console.log(("If this is undefined, the system is holding a Claimer | Spawned new creep: " + name);
+                                                }
     if (!(name < 0)) {
         console.log("If this is undefined, the system is holding a spawn | Spawned new creep: " + name );
     }
