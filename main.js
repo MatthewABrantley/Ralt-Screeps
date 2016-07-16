@@ -68,7 +68,7 @@ module.exports.loop = function () {
         
         //if creep is knight, call knight script
         if (creep.memory.role == 'knight') {
-            roleKinght.run(creep);
+            roleKnight.run(creep);
             }
         //if creep is linkslave, call linkslave script
         if (creep.memory.role == 'linkslave') {
@@ -185,7 +185,7 @@ module.exports.loop = function () {
                                 name = Game.spawns.Spawn1.createCustomCreep(energy, 'builder');
                                 }
                                 else
-                                    if (numberOfKnights >= 1 {
+                                    if (numberOfKnights >= 1) {
                                     console.log("If this is undefined, the system is holding a Knight | Spawned new creep: " + name);
                                     }
                                     else name = Game.spawns.Spawn1.createCustomKCreep(energy, 'knight');
