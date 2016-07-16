@@ -72,10 +72,8 @@ module.exports.loop = function () {
         
         //if creep is knight, call knight script
         if (creep.memory.role == 'knight') {
-            if (name != OK) {
-                console.log("Knight Role Running") && roleKnight.run(creep);
-                }
-        }
+            roleKnight.run(creep);
+            }
         //if creep is linkslave, call linkslave script
         if (creep.memory.role == 'linkslave') {
             roleLinkSlave.run(creep);
