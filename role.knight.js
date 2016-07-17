@@ -2,14 +2,14 @@
 module.exports = {
     run: function(creep) {
 // Define working to == IS IN ENEMY ROOM, maybe implement a WAITING stage to wait for a healer to link up with him
-        if (creep.memory.working == false && creep.room = W23S38) {
+        if (creep.memory.working == false && creep.room == W23S38) {
             var exitDir = FIND_EXIT_TOP;
             var exit = creep.pos.findClosestByRange(exitDir);
             creep.moveTo(exit);
             }
             else
                 if (creep.memory.working == false && creep.room == W32S37) {
-                    var exitDir == FIND_EXIT_LEFT;
+                    var exitDir = FIND_EXIT_LEFT;
                     var exit = creep.pos.findClosestByRange(exitDir);
                     creep.moveTo(exit);
                     }
@@ -17,7 +17,6 @@ module.exports = {
                         if (creep.memory.working == false && creep.room == W33S37) {
                             creep.memory.working = true;
                             }
-    }
                     //else 
                      //   if (creep.memory.working == false) {
                       //      creep.memory.working = true;
@@ -45,7 +44,7 @@ module.exports = {
                 if(creep.attack(killBase) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(killBase);
                 }
-            }
+        }
     }
 }
 //
