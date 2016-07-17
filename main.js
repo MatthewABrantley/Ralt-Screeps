@@ -133,7 +133,7 @@ module.exports.loop = function () {
     var minimumNumberOfBuilders = 1;
     var minimumNumberOfRepairers = 2;
     var minimumNumberOfWallRepairers = 1;
-    var minimumNumberOfKnights = 2;
+    var minimumNumberOfKnights = 0;
     var minimumNumberOfClaimers = 1;
     
     //Max numbers Deprecated and Bad
