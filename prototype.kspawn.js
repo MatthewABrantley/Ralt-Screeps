@@ -53,7 +53,7 @@ module.exports = function () {
             for (let i = 0; i < numberOfParts; i++) {
                 body.push(MOVE);
             }
-        return this.createCreep(body, undefined, {role: roleName, working: leave });
+        return this.createCreep(body, undefined, {role: roleName, working: false });
     };
 
 };

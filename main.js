@@ -73,11 +73,11 @@ module.exports.loop = function () {
         // get the creep object
         var creep = Game.creeps[name];
         
-        //if creep is knight, call knight script
+        //if creep is Claimer, call claimer script
         if (creep.memory.role == 'claimer') {
             roleClaimer.run(creep);
             }
-        //if creep is Claimer, call knight script
+        //if creep is Knight, call knight script
         if (creep.memory.role == 'knight') {
             roleKnight.run(creep);
             }
@@ -133,7 +133,7 @@ module.exports.loop = function () {
     var minimumNumberOfBuilders = 1;
     var minimumNumberOfRepairers = 2;
     var minimumNumberOfWallRepairers = 1;
-    var minimumNumberOfKnights = 1;
+    var minimumNumberOfKnights = 2;
     var minimumNumberOfClaimers = 1;
     
     //Max numbers Deprecated and Bad
@@ -197,27 +197,19 @@ module.exports.loop = function () {
                                 if (numberOfBuilders < minimumNumberOfBuilders) {
                                 name = Game.spawns.Spawn1.createCustomCreep(energy, 'builder');
                                 }
-                                else
-                                    if (numberOfKnights >= 1) {
-                                    console.log("If this is undefined, the system is holding a Knight | Spawned new creep: " + name);
+                                else 
+                                    if (numberOfKnights < minimumNumberOfKnights) {
+                                    name = Game.spawns.Spawn1.createCustomKCreep(energy, 'knight');
                                     }
-                                    else 
-                                        if (numberOfKnights == 0 {
-                                        name = Game.spawns.Spawn1.createCustomKCreep(energy, 'knight');
+                                    else
+                                        if (numberOfClaimers == 2) {
+                                        name = Game.spawns.Spawn1.createClaimCustomCreep(energy, 'claimer');
                                         }
-                                        else
+                                        else 
                                             if (numberOfClaimers >= 1) {
-                                            console.log(("If this is undefined, the system is holding a Knight | Spawned new creep: " + name);
+                                            console.log("If this is undefined, the spawner is paused | Spawned new creep: " + name);
                                             }
-                                            else
-                                                if (numberOfClaimers == 0) {
-                                                name = Game.spawns.Spawn1.createClaimCustomCreep(energy, 'claimer');
-                                                }
-                                                else 
-                                                    if (numberOfClaimers >= 1 {
-                                                    console.log(("If this is undefined, the system is holding a Claimer | Spawned new creep: " + name);
-                                                }
-    if (!(name < 0)) {
-        console.log("If this is undefined, the system is holding a spawn | Spawned new creep: " + name );
-    }
+    //if (!(name < 0)) {
+    //    console.log("If this is undefined, the system is holding a spawn | Spawned new creep: " + name );
+    //}
 };
