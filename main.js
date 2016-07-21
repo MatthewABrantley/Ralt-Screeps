@@ -17,6 +17,7 @@ var roleKnight = require('role.knight');
 var roleClaimer = require('role.claimer');
 var roleUpgraderFar = require('role.upgraderfar');
 var roleBaseExpand = require('role.baseexpand');
+var roleHarvesterForeign = require ('role.harvesterforeign');
 
 
 module.exports.loop = function () {
@@ -105,25 +106,35 @@ module.exports.loop = function () {
             roleHarvesterFar.run(creep);
             }
         // if creep is upgrader, call upgrader script
-        else if (creep.memory.role == 'upgraderfar') {
-            roleUpgraderFar.run(creep);
-            }
+            else 
+                if (creep.memory.role == 'upgraderfar') {
+                roleUpgraderFar.run(creep);
+                }
         // if creep is upgrader, call upgrader script
-        else if (creep.memory.role == 'upgrader') {
-            roleUpgrader.run(creep);
-            }
+                else 
+                    if (creep.memory.role == 'upgrader') {
+                    roleUpgrader.run(creep);
+                    }
         // if creep is builder, call builder script
-        else if (creep.memory.role == 'builder') {
-            roleBuilder.run(creep);
-            }
+                    else 
+                        if (creep.memory.role == 'builder') {
+                        roleBuilder.run(creep);
+                        }
         // if creep is repairer, call repairer script
-        else if (creep.memory.role == 'repairer') {
-            roleRepairer.run(creep);
-            }
-                // if creep is wallrepairer, call repairer script
-        else if (creep.memory.role == 'wallrepairer') {
-            roleWallRepairer.run(creep);
-            }
+                        else 
+                            if (creep.memory.role == 'repairer') {
+                            roleRepairer.run(creep);
+                            }
+        // if creep is wallrepairer, call repairer script
+                            else 
+                                if (creep.memory.role == 'wallrepairer') {
+                                roleWallRepairer.run(creep);
+                                }
+        // if creep is harvesterforeign, call harvesterforeign script
+                                else 
+                                    if (creep.memory.role == 'harvesterforeign') {
+                                    roleHarvesterForeign.run(creep);
+                                }
     }
     
     //Writing things to memory
@@ -144,6 +155,7 @@ module.exports.loop = function () {
     var minimumNumberOfClaimers = 1;
     var minimumNumberofUpgraderFars = 1;
     var minimumNumberofBaseExpanders = 1;
+    var minimumNumberOfHarvesterForeigns = 1;
     
     //Max numbers Deprecated and Bad
     //var maximumNumberOfBuilders = 5;
@@ -162,6 +174,7 @@ module.exports.loop = function () {
     var numberOfClaimers = _.sum(Game.creeps, (c) => c.memory.role == 'claimer');
     var numberOfUpgraderFars = _.sum(Game.creeps, (c) => c.memory.role == 'upgraderfar');
     var numberOfBaseExpanders = _.sum(Game.creeps, (c) => c.memory.role == 'baseexpand');
+    var numberOfHarvesterForeigns = _.sum(Game.creeps, (c) => c.memory.role == 'harvesterforeign');
         
     //var energy wizardy that barely works
     var energy = Game.spawns.Spawn1.room.energyCapacityAvailable;
@@ -179,7 +192,6 @@ module.exports.loop = function () {
                     Game.spawns.Spawn1.room.energyAvailable, 'harvester');
         }
     }
-    
     //Spawn a BirthSlave if none exist
     else if (numberOfBirthSlaves < minimumNumberOfBirthSlaves) {
             name = Game.spawns.Spawn1.createNWCustomCreep(energy, 'birthslave');
@@ -201,33 +213,37 @@ module.exports.loop = function () {
                         name = Game.spawns.Spawn1.createNWCustomCreep(energy, 'linkslave');
                         }
                         else 
-                            if (numberOfRepairers < minimumNumberOfRepairers) {
-                            name = Game.spawns.Spawn1.createCustomCreep(energy, 'repairer');
+                            if (numberOfHarvesterForeigns < minimumNumberOfHarvesterForeigns) {
+                            name = Game.spawns.Spawn1.createUpgradeCustomCreep(energy, 'harvesterforeign');
                             }
-                            else
-                                if (numberOfBaseExpanders < minimumNumberofBaseExpanders) {
-                                    name = Game.spawns.Spawn1.createUpgradeCustomCreep(energy, 'baseexpand');
-                                    }
-                                    else 
-                                        if (numberOfWallRepairers < minimumNumberOfWallRepairers) {
-                                        name = Game.spawns.Spawn1.createCustomCreep(energy, 'wallrepairer');
+                            else 
+                                if (numberOfRepairers < minimumNumberOfRepairers) {
+                                name = Game.spawns.Spawn1.createCustomCreep(energy, 'repairer');
+                                }
+                                else
+                                    if (numberOfBaseExpanders < minimumNumberofBaseExpanders) {
+                                        name = Game.spawns.Spawn1.createUpgradeCustomCreep(energy, 'baseexpand');
                                         }
                                         else 
-                                            if (numberOfBuilders < minimumNumberOfBuilders) {
-                                            name = Game.spawns.Spawn1.createCustomCreep(energy, 'builder');
+                                            if (numberOfWallRepairers < minimumNumberOfWallRepairers) {
+                                            name = Game.spawns.Spawn1.createCustomCreep(energy, 'wallrepairer');
                                             }
                                             else 
-                                                if (numberOfKnights < minimumNumberOfKnights) {
-                                                name = Game.spawns.Spawn1.createCustomKCreep(energy, 'knight');
+                                                if (numberOfBuilders < minimumNumberOfBuilders) {
+                                                name = Game.spawns.Spawn1.createCustomCreep(energy, 'builder');
                                                 }
-                                                else
-                                                    if (numberOfClaimers == 2) {
-                                                    name = Game.spawns.Spawn1.createClaimCustomCreep(energy, 'claimer');
+                                                else 
+                                                    if (numberOfKnights < minimumNumberOfKnights) {
+                                                    name = Game.spawns.Spawn1.createCustomKCreep(energy, 'knight');
                                                     }
-                                                    else 
-                                                        if (numberOfClaimers >= 1) {
-                                                        console.log("If this is undefined, the spawner is paused | Spawned new creep: " + name);
+                                                    else
+                                                        if (numberOfClaimers == 2) {
+                                                        name = Game.spawns.Spawn1.createClaimCustomCreep(energy, 'claimer');
                                                         }
+                                                        else 
+                                                            if (numberOfClaimers >= 1) {
+                                                            console.log("If this is undefined, the spawner is paused | Spawned new creep: " + name);
+                                                            }
     //if (!(name < 0)) {
     //    console.log("If this is undefined, the system is holding a spawn | Spawned new creep: " + name );
     //}
