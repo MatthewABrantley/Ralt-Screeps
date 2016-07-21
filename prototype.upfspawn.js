@@ -24,7 +24,7 @@ module.exports = function () {
                 body.push(WORK);
             }
             for (let i = 0; i < numberOfParts; i++) {
-                body.push(CARRY);
+                body.push(WORK);
             }
             for (let i = 0; i < numberOfParts; i++) {
                 body.push(CARRY);
@@ -37,6 +37,24 @@ module.exports = function () {
             }
             for (let i = 0; i < numberOfParts; i++) {
                 body.push(CARRY);
+            }
+            for (let i = 0; i < numberOfParts; i++) {
+                body.push(CARRY);
+            }
+            for (let i = 0; i < numberOfParts; i++) {
+                body.push(CARRY);
+            }
+            for (let i = 0; i < numberOfParts; i++) {
+                body.push(CARRY);
+            }
+            for (let i = 0; i < numberOfParts; i++) {
+                body.push(MOVE);
+            }
+            for (let i = 0; i < numberOfParts; i++) {
+                body.push(MOVE);
+            }
+            for (let i = 0; i < numberOfParts; i++) {
+                body.push(MOVE);
             }
             for (let i = 0; i < numberOfParts; i++) {
                 body.push(MOVE);

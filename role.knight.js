@@ -22,9 +22,9 @@ module.exports = {
         }
 // This is what happens if false, false is not directly referenced, it has a built in limit to two states unless I write another else if above for it
         if (creep.memory.working == false) {
-                var exitDir = FIND_EXIT_BOTTOM;
-                var exit = creep.pos.findClosestByRange(exitDir);
-                creep.moveTo(exit);
+                var attackFlag = Game.flags.Flag1;
+                var exit = creep.pos.findClosestByRange(attackFlag);
+                creep.moveTo(attackFlag);
                 }    
     }
 }

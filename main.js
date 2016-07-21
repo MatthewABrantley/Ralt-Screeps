@@ -138,6 +138,10 @@ module.exports.loop = function () {
                                 if (creep.memory.role == 'wallrepairer') {
                                 roleWallRepairer.run(creep);
                                 }
+                                else
+                                    if (creep.memory.role == 'baseexpand') {
+                                    roleBaseExpand.run(creep);
+                                    }
         // if creep is harvesterforeign, call harvesterforeign script
                                 else 
                                     if (creep.memory.role == 'harvesterforeign') {
@@ -159,7 +163,7 @@ module.exports.loop = function () {
     var minimumNumberOfBuilders = 1;
     var minimumNumberOfRepairers = 2;
     var minimumNumberOfWallRepairers = 1;
-    var minimumNumberOfKnights = 0;
+    var minimumNumberOfKnights = 1;
     var minimumNumberOfClaimers = 1;
     var minimumNumberofUpgraderFars = 1;
     var minimumNumberofBaseExpanders = 1;
@@ -210,7 +214,7 @@ module.exports.loop = function () {
             }
             else 
                 if (numberOfUpgraders < minimumNumberOfUpgraders) {
-                    name = Game.spawns.Spawn1.createCustomCreep(energy, 'upgrader');
+                    name = Game.spawns.Spawn1.createUpgradeCustomCreep(energy, 'upgrader');
                 }
                 else
                     if (numberOfUpgraderFars < minimumNumberofUpgraderFars) {
@@ -243,6 +247,7 @@ module.exports.loop = function () {
                                                 else 
                                                     if (numberOfKnights < minimumNumberOfKnights) {
                                                     name = Game.spawns.Spawn1.createCustomKCreep(energy, 'knight');
+                                                    console.log("If this is undefined, the spawner is paused | Spawned new creep: " + name);
                                                     }
                                                     else
                                                         if (numberOfClaimers == 2) {
