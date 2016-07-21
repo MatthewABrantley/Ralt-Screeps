@@ -65,7 +65,15 @@ module.exports.loop = function () {
             }
         }
     // Link Code End
-            
+  
+///////////////////////////////////////////////////////////////////////////////////////
+//  I'm going to implement a global call on all functions. Someone suggested it  
+//  online and it seems like a good idea with a global script like this. 
+///////////////////////////////////////////////////////////////////////////////////////
+  
+  
+    
+    
     // clear memory
     for (let name in Memory.creeps) {
         if (Game.creeps[name] == undefined) {
