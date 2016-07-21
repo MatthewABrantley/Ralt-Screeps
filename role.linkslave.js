@@ -27,9 +27,9 @@ module.exports = {
             if (creep.withdraw(pickupLink, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(pickupLink);
             }
-            else {
-                roleBuilder.run(creep);
-            }
+            //else {
+            //    roleBirthSlave.run(creep);
+            //}
         }
     }
 };
