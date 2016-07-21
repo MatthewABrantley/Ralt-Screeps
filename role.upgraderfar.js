@@ -4,10 +4,10 @@ module.exports = {
     //////////////////////////////////////////////////////////////
     //  Expanded variables for creep type
     //////////////////////////////////////////////////////////////
-    var baseFar = Game.getObjectById('576a9bd757110ab231d880c5');
+    //var baseFar = Game.getObjectById('576a9bd757110ab231d880c5');
     
     run: function(creep) {
-            if (creep.memory.working == true && creep.carry.energy == 0) {
+        if (creep.memory.working == true && creep.carry.energy == 0) {
             creep.memory.working = false;
         }
         else if (creep.memory.working == false && creep.carry.energy == creep.carryCapacity) {
@@ -15,9 +15,10 @@ module.exports = {
         }
 
         if (creep.memory.working == true) {
-            if (creep.upgradeController(baseFar) == ERR_NOT_IN_RANGE) {
+            var base2 = Game.getObjectById('576a9bd757110ab231d880c5');
+            if (creep.upgradeController(base2) == ERR_NOT_IN_RANGE) {
             //if (creep.transfer(Game.spawns.Spawn1, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(baseFar);
+                creep.moveTo(base2);
             }   
         }
         // ELSE Working == False, fill up from pickupStorage

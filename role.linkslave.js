@@ -1,7 +1,9 @@
 //TO DO: Implement Tower Bros role and have linkslaves load up towers if they need any from linkStorage
 // This will allow us to stockpile in peace time, and drain RESOURCE_ENERGY into defense when not
 // Perhaps even better would be a "scavenge" memory state where if the slave cannot pull from Link, go pick up loose energy anywhere
-// 
+
+// Modules to import
+var roleBirthSlave = require('role.birthslave');
 // Module to Export
 module.exports = {
     run: function(creep) {
@@ -24,7 +26,10 @@ module.exports = {
             var pickupLink = Game.getObjectById('57871f20ece285d20d1f0d2b');
             if (creep.withdraw(pickupLink, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(pickupLink);
-            }    
+            }
+            else {
+                roleBuilder.run(creep);
+            }
         }
     }
 };
