@@ -167,7 +167,7 @@ module.exports.loop = function () {
     var minimumNumberOfClaimers = 1;
     var minimumNumberofUpgraderFars = 1;
     var minimumNumberofBaseExpanders = 1;
-    var minimumNumberOfHarvesterForeigns = 1;
+    var minimumNumberOfHarvesterForeigns = 2;
     
     //Max numbers Deprecated and Bad
     //var maximumNumberOfBuilders = 5;
