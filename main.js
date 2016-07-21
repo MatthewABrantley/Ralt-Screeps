@@ -16,6 +16,7 @@ var roleBirthSlave = require('role.birthslave');
 var roleKnight = require('role.knight');
 var roleClaimer = require('role.claimer');
 var roleUpgraderFar = require('role.upgraderfar');
+var roleBaseExpand = require('role.baseexpand');
 
 
 module.exports.loop = function () {
@@ -142,6 +143,7 @@ module.exports.loop = function () {
     var minimumNumberOfKnights = 0;
     var minimumNumberOfClaimers = 1;
     var minimumNumberofUpgraderFars = 1;
+    var minimumNumberofBaseExpanders = 1;
     
     //Max numbers Deprecated and Bad
     //var maximumNumberOfBuilders = 5;
@@ -159,6 +161,7 @@ module.exports.loop = function () {
     var numberOfKnights = _.sum(Game.creeps, (c) => c.memory.role == 'knight');
     var numberOfClaimers = _.sum(Game.creeps, (c) => c.memory.role == 'claimer');
     var numberOfUpgraderFars = _.sum(Game.creeps, (c) => c.memory.role == 'upgraderfar');
+    var numberOfBaseExpanders = _.sum(Game.creeps, (c) => c.memory.role == 'baseexpand');
         
     //var energy wizardy that barely works
     var energy = Game.spawns.Spawn1.room.energyCapacityAvailable;
@@ -201,26 +204,30 @@ module.exports.loop = function () {
                             if (numberOfRepairers < minimumNumberOfRepairers) {
                             name = Game.spawns.Spawn1.createCustomCreep(energy, 'repairer');
                             }
-                            else 
-                                if (numberOfWallRepairers < minimumNumberOfWallRepairers) {
-                                name = Game.spawns.Spawn1.createCustomCreep(energy, 'wallrepairer');
-                                }
-                                else 
-                                    if (numberOfBuilders < minimumNumberOfBuilders) {
-                                    name = Game.spawns.Spawn1.createCustomCreep(energy, 'builder');
+                            else
+                                if (numberOfBaseExpanders < minimumNumberofBaseExpanders) {
+                                    name = Game.spawns.Spawn1.createUpgradeCustomCreep(energy, 'baseexpand');
                                     }
                                     else 
-                                        if (numberOfKnights < minimumNumberOfKnights) {
-                                        name = Game.spawns.Spawn1.createCustomKCreep(energy, 'knight');
+                                        if (numberOfWallRepairers < minimumNumberOfWallRepairers) {
+                                        name = Game.spawns.Spawn1.createCustomCreep(energy, 'wallrepairer');
                                         }
-                                        else
-                                            if (numberOfClaimers == 2) {
-                                            name = Game.spawns.Spawn1.createClaimCustomCreep(energy, 'claimer');
+                                        else 
+                                            if (numberOfBuilders < minimumNumberOfBuilders) {
+                                            name = Game.spawns.Spawn1.createCustomCreep(energy, 'builder');
                                             }
                                             else 
-                                                if (numberOfClaimers >= 1) {
-                                                console.log("If this is undefined, the spawner is paused | Spawned new creep: " + name);
+                                                if (numberOfKnights < minimumNumberOfKnights) {
+                                                name = Game.spawns.Spawn1.createCustomKCreep(energy, 'knight');
                                                 }
+                                                else
+                                                    if (numberOfClaimers == 2) {
+                                                    name = Game.spawns.Spawn1.createClaimCustomCreep(energy, 'claimer');
+                                                    }
+                                                    else 
+                                                        if (numberOfClaimers >= 1) {
+                                                        console.log("If this is undefined, the spawner is paused | Spawned new creep: " + name);
+                                                        }
     //if (!(name < 0)) {
     //    console.log("If this is undefined, the system is holding a spawn | Spawned new creep: " + name );
     //}
