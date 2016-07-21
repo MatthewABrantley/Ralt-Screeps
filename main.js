@@ -3,7 +3,7 @@ require('prototype.spawn')();
 require('prototype.kspawn')();
 require('prototype.nwspawn')();
 require('prototype.claimspawn')();
-require('prototype.upfspawn.js')();
+require('prototype.upfspawn')();
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
