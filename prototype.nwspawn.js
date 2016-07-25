@@ -4,7 +4,7 @@ module.exports = function () {
     function(energy, roleName) {
         // Defined variable numberOfParts
         var numberOfParts = Math.floor(energy / 1500);
-            console.log("No Work" + numberOfParts);
+            console.log("Mover" + numberOfParts);
         // Define Body to be an array
         var body = [];
             // 

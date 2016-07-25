@@ -98,3 +98,39 @@ module.exports = {
         }
     }
 };
+
+
+////
+//Startraum
+        var StartRoom = Game.rooms[creep.memory.RaumName];
+        var StartRoomFlag = Game.flags[creep.memory.RaumName];
+        var destRoom = Game.rooms[creep.memory.destRoom];
+        var destRoomFlag = Game.flags[creep.memory.destRoom];
+
+        if(creep.hits < creep.hitsMax && hostiles == undefined) {
+            creep.heal(creep);
+        } 
+        else {
+            if((destRoomFlag == undefined) || (destRoomFlag.room != creep.room)) {
+                creep.moveTo(destRoomFlag);
+            }
+            else if(destRoomFlag.room == creep.room) {
+                var hostiles = creep.pos.findClosestByPath(FIND_HOSTILE_CREEPS);
+                var toHealCreeps = creep.pos.findClosestByPath(FIND_MY_CREEPS, {filter: (creeps) => creeps.hits < creeps.hitsMax});
+                if(hostiles) {
+                    taskAttackCreeps.run(creep, hostiles);
+                }
+                else if(creep.hits < creep.hitsMax) {
+                    creep.heal(creep);
+                }
+                else if(toHealCreeps) {
+                    if(creep.heal(toHealCreeps) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(toHealCreeps)
+                    }
+                }
+                else {
+                    creep.memory.destRoom = creep.memory.RaumName;
+                    creep.moveTo(StartRoomFlag);
+                }
+            }
+        }`

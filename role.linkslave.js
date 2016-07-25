@@ -23,11 +23,12 @@ module.exports = {
             }   
         }
         else {
-            var pickupLink = Game.getObjectById('57871f20ece285d20d1f0d2b');
+            var pickupLink = Game.getObjectById('5791a7695665cc394cfcbc75');
             if (creep.withdraw(pickupLink, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(pickupLink);
             }
-            //else {
+            //else
+            //    if(numberOfBirthSlaves === 0) {
             //    roleBirthSlave.run(creep);
             //}
         }

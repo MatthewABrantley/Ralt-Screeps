@@ -18,6 +18,7 @@ var roleClaimer = require('role.claimer');
 var roleUpgraderFar = require('role.upgraderfar');
 var roleBaseExpand = require('role.baseexpand');
 var roleHarvesterForeign = require ('role.harvesterforeign');
+var roleHarvesterForeign2 = require ('role.harvesterforeign2');
 
 
 module.exports.loop = function () {
@@ -56,7 +57,7 @@ module.exports.loop = function () {
     // Link Code Begin
         // var sourceLinkEnergy = Game.OwnedStructure.STRUCTURE_LINK.
         var sourceLink = Game.getObjectById('57871830fb5c76907e32e5c3');
-        var targetLink = Game.getObjectById('57871f20ece285d20d1f0d2b');
+        var targetLink = Game.getObjectById('5791a7695665cc394cfcbc75');
         
             if(sourceLink) {
                 sourceLink.transferEnergy(targetLink, [800]);
@@ -101,7 +102,7 @@ module.exports.loop = function () {
         if (creep.memory.role == 'harvesterclose') {
             roleHarvesterClose.run(creep);
             }
-        //if creep is harvesterclose, call harvesterclose script
+        //if creep is birthslave, call birthslave script
         if (creep.memory.role == 'birthslave') {
             roleBirthSlave.run(creep);
             }
@@ -143,10 +144,14 @@ module.exports.loop = function () {
                                     roleBaseExpand.run(creep);
                                     }
         // if creep is harvesterforeign, call harvesterforeign script
-                                else 
-                                    if (creep.memory.role == 'harvesterforeign') {
-                                    roleHarvesterForeign.run(creep);
-                                }
+                                    else 
+                                        if (creep.memory.role == 'harvesterforeign') {
+                                        roleHarvesterForeign.run(creep);
+                                        }
+                                        else 
+                                            if (creep.memory.role == 'harvesterforeign2') {
+                                            roleHarvesterForeign2.run(creep);
+                                        }
     }
     
     //Writing things to memory
@@ -161,13 +166,14 @@ module.exports.loop = function () {
     var minimumNumberOfLinkSlaves = 1;
     var minimumNumberOfUpgraders = 1;
     var minimumNumberOfBuilders = 1;
-    var minimumNumberOfRepairers = 2;
+    var minimumNumberOfRepairers = 1;
     var minimumNumberOfWallRepairers = 1;
     var minimumNumberOfKnights = 1;
     var minimumNumberOfClaimers = 1;
     var minimumNumberofUpgraderFars = 1;
-    var minimumNumberofBaseExpanders = 1;
+    var minimumNumberofBaseExpanders = 0;
     var minimumNumberOfHarvesterForeigns = 2;
+    var minimumNumberOfHarvesterForeigns2 = 0;
     
     //Max numbers Deprecated and Bad
     //var maximumNumberOfBuilders = 5;
@@ -187,53 +193,62 @@ module.exports.loop = function () {
     var numberOfUpgraderFars = _.sum(Game.creeps, (c) => c.memory.role == 'upgraderfar');
     var numberOfBaseExpanders = _.sum(Game.creeps, (c) => c.memory.role == 'baseexpand');
     var numberOfHarvesterForeigns = _.sum(Game.creeps, (c) => c.memory.role == 'harvesterforeign');
+    var numberOfHarvesterForeigns2 = _.sum(Game.creeps, (c) => c.memory.role == 'harvesterforeign2');
         
     //var energy wizardy that barely works
     var energy = Game.spawns.Spawn1.room.energyCapacityAvailable;
+    var energy2 = Game.spawns.Spawn2.room.energyCapacityAvailable;
     
     // Unit Spawning Logic
     var name = undefined;
+    
     
     //First spawn a HarvesterClose if none exist to begin filling Storage
     if (numberOfHarvesterCloses < minimumNumberOfHarvesterCloses) {
         name = Game.spawns.Spawn1.createCustomCreep(energy, 'harvesterclose');
             
             //If Not enough energy (Disaster Recovery) spawn a Harvester who will Harvest Anything
-            if (name == ERR_NOT_ENOUGH_ENERGY && numberOfHarvesters == 0) {
-                name = Game.spawns.Spawn1.createCustomCreep(
-                    Game.spawns.Spawn1.room.energyAvailable, 'harvester');
-        }
+            //if (name == ERR_NOT_ENOUGH_ENERGY && numberOfHarvesterCloses == 0) {
+            //    name = Game.spawns.Spawn1.createCustomCreep(
+            //        Game.spawns.Spawn1.room.energyAvailable, 'harvester');
+        //}
     }
-    //Spawn a BirthSlave if none exist
-    else if (numberOfBirthSlaves < minimumNumberOfBirthSlaves) {
-            name = Game.spawns.Spawn1.createNWCustomCreep(energy, 'birthslave');
+    else
+        if (name == ERR_NOT_ENOUGH_ENERGY && numberOfHarvesterCloses == 0) {
+            name = Game.spawns.Spawn1.createCustomCreep(
+            Game.spawns.Spawn1.room.energyAvailable, 'harvester');
         }
+        //Spawn a BirthSlave if none exist
         else 
-            if (numberOfHarvesterFars < minimumNumberOfHarvesterFars) {
-                name = Game.spawns.Spawn1.createCustomCreep(energy, 'harvesterfar');
+            if (numberOfBirthSlaves < minimumNumberOfBirthSlaves) {
+                name = Game.spawns.Spawn1.createNWCustomCreep(energy, 'birthslave');
             }
             else 
-                if (numberOfUpgraders < minimumNumberOfUpgraders) {
-                    name = Game.spawns.Spawn1.createUpgradeCustomCreep(energy, 'upgrader');
+                if (numberOfHarvesterFars < minimumNumberOfHarvesterFars) {
+                    name = Game.spawns.Spawn1.createCustomCreep(energy, 'harvesterfar');
                 }
-                else
-                    if (numberOfUpgraderFars < minimumNumberofUpgraderFars) {
-                        name = Game.spawns.Spawn1.createUpgradeCustomCreep(energy, 'upgraderfar');
+                else 
+                    if (numberOfUpgraders < minimumNumberOfUpgraders) {
+                        name = Game.spawns.Spawn1.createUpgradeCustomCreep(energy, 'upgrader');
                     }
-                    else 
-                        if (numberOfLinkSlaves < minimumNumberOfLinkSlaves) {
-                        name = Game.spawns.Spawn1.createNWCustomCreep(energy, 'linkslave');
+                    else
+                        if (numberOfUpgraderFars < minimumNumberofUpgraderFars) {
+                            name = Game.spawns.Spawn1.createUpgradeCustomCreep(energy, 'upgraderfar');
                         }
                         else 
-                            if (numberOfHarvesterForeigns < minimumNumberOfHarvesterForeigns) {
-                            name = Game.spawns.Spawn1.createUpgradeCustomCreep(energy, 'harvesterforeign');
+                            if (numberOfLinkSlaves < minimumNumberOfLinkSlaves) {
+                            name = Game.spawns.Spawn1.createNWCustomCreep(energy, 'linkslave');
                             }
                             else 
-                                if (numberOfRepairers < minimumNumberOfRepairers) {
-                                name = Game.spawns.Spawn1.createCustomCreep(energy, 'repairer');
+                                if (numberOfHarvesterForeigns < minimumNumberOfHarvesterForeigns) {
+                                name = Game.spawns.Spawn1.createUpgradeCustomCreep(energy, 'harvesterforeign');
                                 }
-                                else
-                                    if (numberOfBaseExpanders < minimumNumberofBaseExpanders) {
+                                else 
+                                    if (numberOfRepairers < minimumNumberOfRepairers) {
+                                    name = Game.spawns.Spawn1.createCustomCreep(energy, 'repairer');
+                                    }
+                                    else
+                                        if (numberOfBaseExpanders < minimumNumberofBaseExpanders) {
                                         name = Game.spawns.Spawn1.createUpgradeCustomCreep(energy, 'baseexpand');
                                         }
                                         else 
@@ -250,13 +265,19 @@ module.exports.loop = function () {
                                                     console.log("If this is undefined, the spawner is paused | Spawned new creep: " + name);
                                                     }
                                                     else
-                                                        if (numberOfClaimers == 2) {
-                                                        name = Game.spawns.Spawn1.createClaimCustomCreep(energy, 'claimer');
+                                                        if (numberOfHarvesterForeigns2 < minimumNumberOfHarvesterForeigns2) {
+                                                        name = Game.spawns.Spawn1.createUpgradeCustomCreep(energy, 'harvesterforeign2');
                                                         }
-                                                        else 
-                                                            if (numberOfClaimers >= 1) {
-                                                            console.log("If this is undefined, the spawner is paused | Spawned new creep: " + name);
+                                                        else
+                                                            if (numberOfClaimers == 2) {
+                                                            name = Game.spawns.Spawn1.createClaimCustomCreep(energy, 'claimer');
                                                             }
+                                                            else 
+                                                                if (numberOfClaimers >= 1) {
+                                                                console.log("If this is undefined, the spawner is paused | Spawned new creep: " + name);
+                                                                }
+                                                                else
+                                                                console.log("If this is undefined, the spawner is paused | Spawned new creep: " + name);
     //if (!(name < 0)) {
     //    console.log("If this is undefined, the system is holding a spawn | Spawned new creep: " + name );
     //}
