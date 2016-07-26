@@ -7,11 +7,11 @@ module.exports = {
         var depositStorageB = Game.getObjectById('5796050ee55830547916cea1')
         console.log(depositStorageB);
         
-        if (creep.memory.working == true && creep.carry.energy == 0) {
+        if (creep.memory.working == true && creep.carry.energy === 0) {
             creep.memory.working = false;
         }
         else 
-            if (creep.memory.working == false && creep.carry.energy == creep.carryCapacity) {
+            if (creep.memory.working == false && creep.carry.energy === creep.carryCapacity) {
                 creep.memory.working = true;
             }
         //////////////////////////////////////////////////////////////////////////////////////
@@ -38,6 +38,7 @@ module.exports = {
                     }
                 }
         }
+    }
 }
 
 

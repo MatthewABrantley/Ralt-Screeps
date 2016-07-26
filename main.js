@@ -360,6 +360,7 @@ module.exports.loop = function () {
                 else
                     if (numberOfWallRepairersB < minimumNumberOfWallRepairersB) {
                         name = Game.spawns.Spawn2.createUpgradeCustomCreep(energyB, 'wallrepairerB');
+                    }
     //else
     //    if
     console.log("If this is undefined, the spawnerB is paused | Spawned new creepB: " + name);
