@@ -1,5 +1,5 @@
 //Import Modules
-var roleWallRepairerB = require('role.roleWallRepairerB');
+var roleWallRepairerB = require('role.wallrepairerB');
 
 //Modules to Export
 module.exports = {

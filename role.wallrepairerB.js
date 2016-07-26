@@ -1,5 +1,5 @@
 //Import Modules
-var roleBuilderB = require('role.roleBuilderB');
+var roleBuilderB = require('role.builderB');
 
 // Module to Export
 module.exports = {

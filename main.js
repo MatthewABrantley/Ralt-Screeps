@@ -222,12 +222,12 @@ module.exports.loop = function () {
     var minimumNumberOfRepairersB = 1;
     var minimumNumberOfWallRepairers = 1;
     var minimumNumberOfWallRepairersB = 1;
-    var minimumNumberOfKnights = 1;
+    var minimumNumberOfKnights = 0;
     var minimumNumberOfClaimers = 1;
-    var minimumNumberofUpgraderFars = 1;
+    var minimumNumberofUpgraderFars = 0;
     var minimumNumberofBaseExpanders = 0;
     var minimumNumberOfHarvesterForeigns = 1;
-    var minimumNumberOfHarvesterForeigns2 = 0;
+    var minimumNumberOfHarvesterForeigns2 = 1;
     
     //Max numbers Deprecated and Bad
     //var maximumNumberOfBuilders = 5;
