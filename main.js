@@ -52,6 +52,32 @@ module.exports.loop = function () {
                 tower.attack(closestHostile);
                 }
         }
+        var towerB1 = Game.getObjectById('57963348c64f31c502242214');
+            if(tower) {
+                var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
+                    filter: (structure) => structure.hits < 100000 && (structure).structureType == STRUCTURE_RAMPART
+        });
+            if(closestDamagedStructure) {
+                tower.repair(closestDamagedStructure);
+        }
+        var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+            if(closestHostile) {
+                tower.attack(closestHostile);
+                }
+        }
+        var towerB2 = Game.getObjectById('57964ff761e7ffcf02fb3a5c');
+            if(tower) {
+                var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
+                    filter: (structure) => structure.hits < 100000 && (structure).structureType == STRUCTURE_RAMPART
+        });
+            if(closestDamagedStructure) {
+                tower.repair(closestDamagedStructure);
+        }
+        var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+            if(closestHostile) {
+                tower.attack(closestHostile);
+                }
+        }
     // Tower Code End
         
     // Link Code Begin
@@ -157,6 +183,8 @@ module.exports.loop = function () {
     //Writing things to memory
     var numberOfCreeps = _.sum(Game.creeps, (c) => c.memory.role != 'undefined');
     
+    
+    
 
     //Minimum numbers of screeps
     var minimumNumberOfHarvesters = 0;
@@ -194,8 +222,12 @@ module.exports.loop = function () {
     var numberOfBaseExpanders = _.sum(Game.creeps, (c) => c.memory.role == 'baseexpand');
     var numberOfHarvesterForeigns = _.sum(Game.creeps, (c) => c.memory.role == 'harvesterforeign');
     var numberOfHarvesterForeigns2 = _.sum(Game.creeps, (c) => c.memory.role == 'harvesterforeign2');
-        
-    //var energy wizardy that barely works
+    ///////////////////////////////////////////////////////////////////////////////////////    
+    // var energy wizardy that barely works
+    // I need to be dividing my energy variables by something other than a static number, 
+    // that's why this fails so easily. Although, I could also set up stages for different
+    // RCL's(GCL's?) in my createCustomCreep prototypes.  
+    ///////////////////////////////////////////////////////////////////////////////////////
     var energy = Game.spawns.Spawn1.room.energyCapacityAvailable;
     var energy2 = Game.spawns.Spawn2.room.energyCapacityAvailable;
     
