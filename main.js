@@ -13,6 +13,7 @@ var roleHarvesterFar = require('role.harvesterfar');
 var roleLinkSlave = require('role.linkslave');
 var roleHarvesterClose = require('role.harvesterclose');
 var roleBirthSlave = require('role.birthslave');
+var roleBirthSlavBe = require('role.birthslaveB');
 var roleKnight = require('role.knight');
 var roleClaimer = require('role.claimer');
 var roleUpgraderFar = require('role.upgraderfar');
@@ -112,6 +113,9 @@ module.exports.loop = function () {
         // get the creep object
         var creep = Game.creeps[name];
         
+        if (creep.memory.role === 'birthslaveB') {
+            roleBirthSlaveB.run(creep);
+            }
         //if creep is Claimer, call claimer script
         if (creep.memory.role == 'claimer') {
             roleClaimer.run(creep);
@@ -313,7 +317,7 @@ module.exports.loop = function () {
                                                                 else
                                                                 console.log("If this is undefined, the spawner is paused | Spawned new creep: " + name);
     if (numberOfBirthSlavesB < minimumNumberOfBirthSlavesB) {
-        name = Game.spawns.Spawn1.createNWCustomCreep(energyB, 'birthslaveB');
+        name = Game.spawns.Spawn2.createNWCustomCreep(energyB, 'birthslaveB');
     }
     //else
     //    if
