@@ -31,12 +31,14 @@ module.exports = {
         if (creep.transfer(depositStorageB, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             creep.moveTo(depositStorageB);
             }
-            else
-                if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(source);
-            }
+        else {
+            if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(source);
+                }
+        }
     }
 }
+
 
 
 

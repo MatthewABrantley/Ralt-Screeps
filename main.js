@@ -191,6 +191,7 @@ module.exports.loop = function () {
     var minimumNumberOfHarvesterFars = 1;
     var minimumNumberOfHarvesterCloses = 1;
     var minimumNumberOfBirthSlaves = 1;
+    var minimumNumberOfBirthSlavesB = 1;
     var minimumNumberOfLinkSlaves = 1;
     var minimumNumberOfUpgraders = 1;
     var minimumNumberOfBuilders = 1;
@@ -200,7 +201,7 @@ module.exports.loop = function () {
     var minimumNumberOfClaimers = 1;
     var minimumNumberofUpgraderFars = 1;
     var minimumNumberofBaseExpanders = 0;
-    var minimumNumberOfHarvesterForeigns = 2;
+    var minimumNumberOfHarvesterForeigns = 1;
     var minimumNumberOfHarvesterForeigns2 = 0;
     
     //Max numbers Deprecated and Bad
@@ -216,6 +217,7 @@ module.exports.loop = function () {
     var numberOfHarvesterCloses = _.sum(Game.creeps, (c) => c.memory.role == 'harvesterclose');
     var numberOfLinkSlaves = _.sum(Game.creeps, (c) => c.memory.role == 'linkslave');
     var numberOfBirthSlaves = _.sum(Game.creeps, (c) => c.memory.role == 'birthslave');
+    var numberOfBirthSlavesB = _.sum(Game.creeps, (c) => c.memory.role == 'birthslaveB');
     var numberOfKnights = _.sum(Game.creeps, (c) => c.memory.role == 'knight');
     var numberOfClaimers = _.sum(Game.creeps, (c) => c.memory.role == 'claimer');
     var numberOfUpgraderFars = _.sum(Game.creeps, (c) => c.memory.role == 'upgraderfar');
@@ -229,7 +231,7 @@ module.exports.loop = function () {
     // RCL's(GCL's?) in my createCustomCreep prototypes.  
     ///////////////////////////////////////////////////////////////////////////////////////
     var energy = Game.spawns.Spawn1.room.energyCapacityAvailable;
-    var energy2 = Game.spawns.Spawn2.room.energyCapacityAvailable;
+    var energyB = Game.spawns.Spawn2.room.energyCapacityAvailable;
     
     // Unit Spawning Logic
     var name = undefined;
@@ -310,6 +312,15 @@ module.exports.loop = function () {
                                                                 }
                                                                 else
                                                                 console.log("If this is undefined, the spawner is paused | Spawned new creep: " + name);
+    if (numberOfBirthSlavesB < minimumNumberOfBirthSlavesB) {
+        name = Game.spawns.Spawn1.createNWCustomCreep(energyB, 'birthslaveB');
+    }
+    //else
+    //    if
+    console.log("If this is undefined, the spawnerB is paused | Spawned new creepB: " + name);
+    
+    
+    
     //if (!(name < 0)) {
     //    console.log("If this is undefined, the system is holding a spawn | Spawned new creep: " + name );
     //}
