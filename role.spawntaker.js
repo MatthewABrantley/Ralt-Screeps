@@ -133,4 +133,21 @@ module.exports = {
                     creep.moveTo(StartRoomFlag);
                 }
             }
-        }`
+        }
+
+        
+        
+        //////////////////////////////////////////////////////////////////////////////////////
+        // 
+        //             Reuse this code to build in foreign rooms
+        // 
+        //////////////////////////////////////////////////////////////////////////////////////
+        //if (creep.memory.working == true) {
+        //    var constructionSite = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
+        //   if (constructionSite != undefined) {
+        //        if (creep.build(constructionSite) == ERR_NOT_IN_RANGE) {
+        //            creep.moveTo(constructionSite);
+        //        }
+        //    }
+        //    else
+        //        if (constructionSite == undefined) {

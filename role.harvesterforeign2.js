@@ -10,7 +10,7 @@ module.exports = {
         else if (creep.memory.working == false && creep.carry.energy == creep.carryCapacity) {
             creep.memory.working = true;
         }
-        if (creep.memory.working == true) {
+        if (creep.memory.working === true) {
             if (creep.transfer(deposit2, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(deposit2);
                 }

@@ -1,26 +1,28 @@
 //Module to Export
 module.exports = {
     run: function(creep) {
-        var thisFlag = Game.flags.Flag1;
-        if (creep.memory.working == false && creep.room != 'room W33S36') {
-            creep.moveTo(thisFlag);
-            }
-            else
-                if(creep.pos.isEqualTo(thisFlag)) {
-                    creep.memory.working = true;
-                }
-                    //else 
-                     //   if (creep.memory.working == false) {
-                      //      creep.memory.working = true;
-                    //        }
-// if creep.memory.working == true find enemy units and attack
-        if (creep.memory.working == true) {
-            var takeControl = creep.pos.findClosestByPath(FIND_STRUCTURES);
+        if (creep.memory.working === true) {
+            var takeControl = Game.getObjectById('576a9bcd57110ab231d87fc3');
+            console.log(creep.reserveController(takeControl));
             if (takeControl != undefined) {
-                if(creep.claimController(takeControl) == ERR_NOT_IN_RANGE) {
+                if (creep.reserveController(takeControl) === ERR_NOT_IN_RANGE) {
                     creep.moveTo(takeControl);
+                    }
+                    else
+                        if (takeControl === undefined) {
+                            creep.memory.working = false;
+                           }
                 }
-            }
+        }
+        
+// This is what happens if false, false is not directly referenced, it has a built in limit to two states unless I write another else if above for it
+        if (creep.memory.working === false) {
+                var nextRhoom = Game.flags.nextRoom;
+                var exit = creep.pos.findClosestByRange(nextRhoom);
+                creep.moveTo(nextRhoom);
+                }
+        if (creep.pos.isNearTo(nextRhoom)) {
+            creep.memory.working = true;
         }
     }
 }

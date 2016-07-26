@@ -4,11 +4,12 @@ require('prototype.kspawn')();
 require('prototype.nwspawn')();
 require('prototype.claimspawn')();
 require('prototype.upfspawn')();
+require('prototype.hspawn')();
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleUpgraderB = require('role.upgraderB');
 var roleBuilder = require('role.builder');
-var roleBuilderB = require('role.builder');
+var roleBuilderB = require('role.builderB');
 var roleRepairer = require('role.repairer');
 var roleRepairerB = require('role.repairerB');
 var roleWallRepairer = require('role.wallrepairer');
@@ -60,12 +61,12 @@ module.exports.loop = function () {
         }
         var towerB1 = Game.getObjectById('57963348c64f31c502242214');
             if(towerB1) {
-        //        var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
-        //            filter: (structure) => structure.hits < structure.hitsMax && (structure).structureType != STRUCTURE_RAMPART
-        //});
-        //    if(closestDamagedStructure) {
-        //        tower.repair(closestDamagedStructure);
-        //}
+                var closestDamagedStructureB1 = towerB1.pos.findClosestByRange(FIND_STRUCTURES, {
+                    filter: (structure) => structure.hits < 3000 && (structure).structureType === STRUCTURE_RAMPART
+        });
+            if(closestDamagedStructureB1) {
+                towerB1.repair(closestDamagedStructureB1);
+        }
         var closestHostileB1 = towerB1.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
             if(closestHostileB1) {
                 towerB1.attack(closestHostileB1);
@@ -73,12 +74,12 @@ module.exports.loop = function () {
         }
         var towerB2 = Game.getObjectById('57964ff761e7ffcf02fb3a5c');
             if(towerB2) {
-        //        var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
-        //            filter: (structure) => structure.hits < 100000 && (structure).structureType == STRUCTURE_RAMPART
-        //});
-        //    if(closestDamagedStructure) {
-        //        tower.repair(closestDamagedStructure);
-        //}
+                var closestDamagedStructureB2 = towerB2.pos.findClosestByRange(FIND_STRUCTURES, {
+                    filter: (structure) => structure.hits < 3000 && (structure).structureType === STRUCTURE_RAMPART
+        });
+            if(closestDamagedStructureB2) {
+                towerB2.repair(closestDamagedStructureB2);
+        }
         var closestHostileB2 = towerB2.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
             if(closestHostileB2) {
                 towerB2.attack(closestHostileB2);
@@ -221,7 +222,7 @@ module.exports.loop = function () {
     var minimumNumberOfRepairers = 1;
     var minimumNumberOfRepairersB = 1;
     var minimumNumberOfWallRepairers = 1;
-    var minimumNumberOfWallRepairersB = 1;
+    var minimumNumberOfWallRepairersB = 0;
     var minimumNumberOfKnights = 0;
     var minimumNumberOfClaimers = 1;
     var minimumNumberofUpgraderFars = 0;
@@ -269,7 +270,7 @@ module.exports.loop = function () {
     
     //First spawn a HarvesterClose if none exist to begin filling Storage
     if (numberOfHarvesterCloses < minimumNumberOfHarvesterCloses) {
-        name = Game.spawns.Spawn1.createCustomCreep(energy, 'harvesterclose');
+        name = Game.spawns.Spawn1.createHCustomCreep(energy, 'harvesterclose');
             
             //If Not enough energy (Disaster Recovery) spawn a Harvester who will Harvest Anything
             //if (name == ERR_NOT_ENOUGH_ENERGY && numberOfHarvesterCloses == 0) {
@@ -289,7 +290,7 @@ module.exports.loop = function () {
             }
             else 
                 if (numberOfHarvesterFars < minimumNumberOfHarvesterFars) {
-                    name = Game.spawns.Spawn1.createCustomCreep(energy, 'harvesterfar');
+                    name = Game.spawns.Spawn1.createHCustomCreep(energy, 'harvesterfar');
                 }
                 else 
                     if (numberOfUpgraders < minimumNumberOfUpgraders) {
@@ -333,7 +334,7 @@ module.exports.loop = function () {
                                                         name = Game.spawns.Spawn1.createUpgradeCustomCreep(energy, 'harvesterforeign2');
                                                         }
                                                         else
-                                                            if (numberOfClaimers == 2) {
+                                                            if (numberOfClaimers == 0) {
                                                             name = Game.spawns.Spawn1.createClaimCustomCreep(energy, 'claimer');
                                                             }
                                                             else 

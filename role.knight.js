@@ -25,9 +25,13 @@ module.exports = {
                 var attackFlag = Game.flags.Flag1;
                 var exit = creep.pos.findClosestByRange(attackFlag);
                 creep.moveTo(attackFlag);
-                }    
+                }
+                else
+                    if (creep.pos.isNearTo(attackFlag)) {
+                        creep.memory.working = true;
+                    }
     }
-}
+};
 //
 //if(creep.room != anotherRoomName) {
 //    var exitDir = Game.map.findExit(creep.room, anotherRoomName);
