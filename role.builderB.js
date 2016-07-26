@@ -1,5 +1,5 @@
 //Import Modules
-var roleUpgrader = require('role.upgrader');
+var roleUpgraderB = require('role.upgraderB');
 
 //Module to Export
 module.exports = {
@@ -19,14 +19,14 @@ module.exports = {
                 }
             }
             else {
-                roleUpgrader.run(creep);
+                roleUpgraderB.run(creep);
             }
         }
         // ELSE Working == False, fill up from pickupStorage
         else {
-            var pickupStorage = Game.getObjectById('5796050ee55830547916cea1');
-            if (creep.withdraw(pickupStorage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(pickupStorage);
+            var pickupStorageB = Game.getObjectById('5796050ee55830547916cea1');
+            if (creep.withdraw(pickupStorageB, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(pickupStorageB);
             }    
         }
     }

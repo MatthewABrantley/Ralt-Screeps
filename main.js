@@ -12,6 +12,7 @@ var roleBuilderB = require('role.builder');
 var roleRepairer = require('role.repairer');
 var roleRepairerB = require('role.repairerB');
 var roleWallRepairer = require('role.wallrepairer');
+var roleWallRepairerB = require('role.wallrepairerB');
 var roleHarvesterFar = require('role.harvesterfar');
 var roleLinkSlave = require('role.linkslave');
 var roleHarvesterClose = require('role.harvesterclose');
@@ -25,61 +26,62 @@ var roleHarvesterForeign = require ('role.harvesterforeign');
 var roleHarvesterForeign2 = require ('role.harvesterforeign2');
 
 
+
 module.exports.loop = function () {
     if (roleKnight == undefined) {
         console.log("Knight Error, role failed to be defined");
     }
-    // Tower Code Begin
-        var tower = Game.getObjectById('577c54de60a6481721b4c1ba');
-            if(tower) {
-                var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
-                    filter: (structure) => structure.hits < 100000 && (structure).structureType == STRUCTURE_RAMPART
-        });
-            if(closestDamagedStructure) {
-                tower.repair(closestDamagedStructure);
-        }
-        var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
-            if(closestHostile) {
-                tower.attack(closestHostile);
+        // Tower Code Begin
+        var tower1 = Game.getObjectById('577c54de60a6481721b4c1ba');
+            if(tower1) {
+        //        var closestDamagedStructure1 = tower.pos.findClosestByRange(FIND_STRUCTURES, {
+        //            filter: (structure) => structure.hits < 100000 && (structure).structureType === STRUCTURE_RAMPART
+        //});
+        //    if(closestDamagedStructure1) {
+        //        tower.repair(closestDamagedStructure);
+        //}
+        var closestHostile1 = tower1.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+            if(closestHostile1) {
+                tower1.attack(closestHostile1);
                 }
         }
         var tower2 = Game.getObjectById('578422af775afdc61face40f');
             if(tower2) {
-                var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
-                    filter: (structure) => structure.hits < 10000 && (structure).structureType == STRUCTURE_RAMPART
-        });
-        if(closestDamagedStructure) {
-            tower.repair(closestDamagedStructure);
-        }
-        var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
-            if(closestHostile) {
-                tower.attack(closestHostile);
+        //        var closestDamagedStructure2 = tower.pos.findClosestByRange(FIND_STRUCTURES, {
+        //            filter: (structure) => structure.hits < 10000 && (structure).structureType == STRUCTURE_RAMPART
+        //});
+        //if(closestDamagedStructure2) {
+        //    tower.repair(closestDamagedStructure2);
+        //}
+        var closestHostile2 = tower2.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+            if(closestHostile2) {
+                tower2.attack(closestHostile2);
                 }
         }
         var towerB1 = Game.getObjectById('57963348c64f31c502242214');
-            if(tower) {
-                var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
-                    filter: (structure) => structure.hits < 100000 && (structure).structureType == STRUCTURE_RAMPART
-        });
-            if(closestDamagedStructure) {
-                tower.repair(closestDamagedStructure);
-        }
-        var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
-            if(closestHostile) {
-                tower.attack(closestHostile);
+            if(towerB1) {
+        //        var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
+        //            filter: (structure) => structure.hits < structure.hitsMax && (structure).structureType != STRUCTURE_RAMPART
+        //});
+        //    if(closestDamagedStructure) {
+        //        tower.repair(closestDamagedStructure);
+        //}
+        var closestHostileB1 = towerB1.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+            if(closestHostileB1) {
+                towerB1.attack(closestHostileB1);
                 }
         }
         var towerB2 = Game.getObjectById('57964ff761e7ffcf02fb3a5c');
-            if(tower) {
-                var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
-                    filter: (structure) => structure.hits < 100000 && (structure).structureType == STRUCTURE_RAMPART
-        });
-            if(closestDamagedStructure) {
-                tower.repair(closestDamagedStructure);
-        }
-        var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
-            if(closestHostile) {
-                tower.attack(closestHostile);
+            if(towerB2) {
+        //        var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
+        //            filter: (structure) => structure.hits < 100000 && (structure).structureType == STRUCTURE_RAMPART
+        //});
+        //    if(closestDamagedStructure) {
+        //        tower.repair(closestDamagedStructure);
+        //}
+        var closestHostileB2 = towerB2.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+            if(closestHostileB2) {
+                towerB2.attack(closestHostileB2);
                 }
         }
     // Tower Code End
@@ -127,6 +129,9 @@ module.exports.loop = function () {
         }
         if (creep.memory.role === 'repairerB') {
             roleRepairerB.run(creep);
+        }
+        if (creep.memory.role === 'wallrepairerB') {
+            roleWallRepairerB.run(creep);
         }
         //if creep is Claimer, call claimer script
         if (creep.memory.role == 'claimer') {
@@ -216,6 +221,7 @@ module.exports.loop = function () {
     var minimumNumberOfRepairers = 1;
     var minimumNumberOfRepairersB = 1;
     var minimumNumberOfWallRepairers = 1;
+    var minimumNumberOfWallRepairersB = 1;
     var minimumNumberOfKnights = 1;
     var minimumNumberOfClaimers = 1;
     var minimumNumberofUpgraderFars = 1;
@@ -235,6 +241,7 @@ module.exports.loop = function () {
     var numberOfRepairers = _.sum(Game.creeps, (c) => c.memory.role == 'repairer');
     var numberOfRepairersB = _.sum(Game.creeps, (c) => c.memory.role == 'repairerB');
     var numberOfWallRepairers = _.sum(Game.creeps, (c) => c.memory.role == 'wallrepairer');
+    var numberOfWallRepairersB = _.sum(Game.creeps, (c) => c.memory.role == 'wallrepairerB');
     var numberOfHarvesterFars = _.sum(Game.creeps, (c) => c.memory.role == 'harvesterfar');
     var numberOfHarvesterCloses = _.sum(Game.creeps, (c) => c.memory.role == 'harvesterclose');
     var numberOfLinkSlaves = _.sum(Game.creeps, (c) => c.memory.role == 'linkslave');
@@ -350,6 +357,9 @@ module.exports.loop = function () {
                 if (numberOfBuildersB < minimumNumberOfBuildersB) {
                     name = Game.spawns.Spawn2.createUpgradeCustomCreep(energyB, 'builderB');
                 }
+                else
+                    if (numberOfWallRepairersB < minimumNumberOfWallRepairersB) {
+                        name = Game.spawns.Spawn2.createUpgradeCustomCreep(energyB, 'wallrepairerB');
     //else
     //    if
     console.log("If this is undefined, the spawnerB is paused | Spawned new creepB: " + name);

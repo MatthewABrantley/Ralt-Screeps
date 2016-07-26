@@ -1,7 +1,7 @@
 //Import Modules
-var roleWallRepairerB = require('role.roleWallRepairerB');
+var roleBuilderB = require('role.roleBuilderB');
 
-//Modules to Export
+// Module to Export
 module.exports = {
     run: function(creep) {
             if (creep.memory.working == true && creep.carry.energy == 0) {
@@ -13,8 +13,7 @@ module.exports = {
 
         if (creep.memory.working == true) {
             var structure = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-                filter: (s) => s.hits < s.hitsMax && s.structureType != STRUCTURE_WALL
-            //                                      || s.structureType === STRUCTURE_ROAD
+                filter: (s) => s.hits < 50000 && s.structureType == STRUCTURE_WALL
             });  
             if (structure != undefined) {
                 if (creep.repair(structure) == ERR_NOT_IN_RANGE) {
@@ -22,7 +21,7 @@ module.exports = {
                 }
             }
             else {
-                roleWallRepairerB.run(creep);
+                roleBuilderB.run(creep);
             }
         }
         // ELSE Working == False, fill up from pickupStorage
