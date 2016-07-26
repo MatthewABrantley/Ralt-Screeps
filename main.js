@@ -5,6 +5,7 @@ require('prototype.nwspawn')();
 require('prototype.claimspawn')();
 require('prototype.upfspawn')();
 require('prototype.hspawn')();
+require('prototype.h1cspawn')();
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleUpgraderB = require('role.upgraderB');
@@ -270,7 +271,7 @@ module.exports.loop = function () {
     
     //First spawn a HarvesterClose if none exist to begin filling Storage
     if (numberOfHarvesterCloses < minimumNumberOfHarvesterCloses) {
-        name = Game.spawns.Spawn1.createHCustomCreep(energy, 'harvesterclose');
+        name = Game.spawns.Spawn1.createH1CCustomCreep(energy, 'harvesterclose');
             
             //If Not enough energy (Disaster Recovery) spawn a Harvester who will Harvest Anything
             //if (name == ERR_NOT_ENOUGH_ENERGY && numberOfHarvesterCloses == 0) {
