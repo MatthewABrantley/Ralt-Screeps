@@ -6,14 +6,17 @@ require('prototype.claimspawn')();
 require('prototype.upfspawn')();
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
+var roleUpgraderB = require('role.upgraderB');
 var roleBuilder = require('role.builder');
+var roleBuilderB = require('role.builder');
 var roleRepairer = require('role.repairer');
+var roleRepairerB = require('role.repairerB');
 var roleWallRepairer = require('role.wallrepairer');
 var roleHarvesterFar = require('role.harvesterfar');
 var roleLinkSlave = require('role.linkslave');
 var roleHarvesterClose = require('role.harvesterclose');
 var roleBirthSlave = require('role.birthslave');
-var roleBirthSlavBe = require('role.birthslaveB');
+var roleBirthSlaveB = require('role.birthslaveB');
 var roleKnight = require('role.knight');
 var roleClaimer = require('role.claimer');
 var roleUpgraderFar = require('role.upgraderfar');
@@ -115,35 +118,44 @@ module.exports.loop = function () {
         
         if (creep.memory.role === 'birthslaveB') {
             roleBirthSlaveB.run(creep);
-            }
+        }
+        if (creep.memory.role === 'upgraderB') {
+            roleUpgraderB.run(creep);
+        }
+        if (creep.memory.role === 'builderB') {
+            roleBuilderB.run(creep);
+        }
+        if (creep.memory.role === 'repairerB') {
+            roleRepairerB.run(creep);
+        }
         //if creep is Claimer, call claimer script
         if (creep.memory.role == 'claimer') {
             roleClaimer.run(creep);
-            }
+        }
         //if creep is Knight, call knight script
         if (creep.memory.role == 'knight') {
             roleKnight.run(creep);
-            }
+        }
         //if creep is linkslave, call linkslave script
         if (creep.memory.role == 'linkslave') {
             roleLinkSlave.run(creep);
-            }
+        }
         //if creep is harvesterclose, call harvesterclose script
         if (creep.memory.role == 'harvesterclose') {
             roleHarvesterClose.run(creep);
-            }
+        }
         //if creep is birthslave, call birthslave script
         if (creep.memory.role == 'birthslave') {
             roleBirthSlave.run(creep);
-            }
+        }
         //if creep is harvester, call harvester script
         if (creep.memory.role == 'harvester') {
             roleHarvester.run(creep);
-            }
+        }
         //if creep is harvesterfar, call harvesterfar script
         if (creep.memory.role == 'harvesterfar') {
             roleHarvesterFar.run(creep);
-            }
+        }
         // if creep is upgrader, call upgrader script
             else 
                 if (creep.memory.role == 'upgraderfar') {
@@ -198,8 +210,11 @@ module.exports.loop = function () {
     var minimumNumberOfBirthSlavesB = 1;
     var minimumNumberOfLinkSlaves = 1;
     var minimumNumberOfUpgraders = 1;
+    var minimumNumberOfUpgradersB = 1;
     var minimumNumberOfBuilders = 1;
+    var minimumNumberOfBuildersB = 1;
     var minimumNumberOfRepairers = 1;
+    var minimumNumberOfRepairersB = 1;
     var minimumNumberOfWallRepairers = 1;
     var minimumNumberOfKnights = 1;
     var minimumNumberOfClaimers = 1;
@@ -214,8 +229,11 @@ module.exports.loop = function () {
     //Defines how many of each Screep there are
     var numberOfHarvesters = _.sum(Game.creeps, (c) => c.memory.role == 'harvester');
     var numberOfUpgraders = _.sum(Game.creeps, (c) => c.memory.role == 'upgrader');
+    var numberOfUpgradersB = _.sum(Game.creeps, (c) => c.memory.role == 'upgraderB');
     var numberOfBuilders = _.sum(Game.creeps, (c) => c.memory.role == 'builder');
+    var numberOfBuildersB = _.sum(Game.creeps, (c) => c.memory.role == 'builderB');
     var numberOfRepairers = _.sum(Game.creeps, (c) => c.memory.role == 'repairer');
+    var numberOfRepairersB = _.sum(Game.creeps, (c) => c.memory.role == 'repairerB');
     var numberOfWallRepairers = _.sum(Game.creeps, (c) => c.memory.role == 'wallrepairer');
     var numberOfHarvesterFars = _.sum(Game.creeps, (c) => c.memory.role == 'harvesterfar');
     var numberOfHarvesterCloses = _.sum(Game.creeps, (c) => c.memory.role == 'harvesterclose');
@@ -239,6 +257,7 @@ module.exports.loop = function () {
     
     // Unit Spawning Logic
     var name = undefined;
+
     
     
     //First spawn a HarvesterClose if none exist to begin filling Storage
@@ -319,6 +338,18 @@ module.exports.loop = function () {
     if (numberOfBirthSlavesB < minimumNumberOfBirthSlavesB) {
         name = Game.spawns.Spawn2.createNWCustomCreep(energyB, 'birthslaveB');
     }
+    else
+        if (numberOfUpgradersB < minimumNumberOfUpgradersB) {
+            name = Game.spawns.Spawn2.createUpgradeCustomCreep(energyB, 'upgraderB');
+        }
+        else
+            if (numberOfRepairersB < minimumNumberOfRepairersB) {
+                name = Game.spawns.Spawn2.createUpgradeCustomCreep(energyB, 'repairerB');
+            }
+            else
+                if (numberOfBuildersB < minimumNumberOfBuildersB) {
+                    name = Game.spawns.Spawn2.createUpgradeCustomCreep(energyB, 'builderB');
+                }
     //else
     //    if
     console.log("If this is undefined, the spawnerB is paused | Spawned new creepB: " + name);
